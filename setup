@@ -1,0 +1,24 @@
+#! /bin/bash
+
+setup_git() {
+  [[ ! -f ~/.gitconfig ]] && ln -sfv ~/git/.gitconfig ~/
+}
+
+setup_dependencies() {
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+  brew bundle
+}
+
+
+setup_packer() {
+  git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+}
+
+setup_vim() {
+  [[ ! -d ~/.config/nvim ]] && ln -sfv ~/workspace/dotfiles/nvim ~/.config/nvim
+}
+
+setup_git
+setup_dependencies
+setup_packer
+setup_vim
