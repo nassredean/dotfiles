@@ -1,0 +1,34 @@
+[user]
+	name = Nassredean Nasseri
+	email = dean@nasseri.io
+[merge]
+  tool = opendiff
+[alias]
+  p = push --force-with-lease origin HEAD
+  ls = branch
+  lg = "!f() { git log --pretty=format:\"%h%x09%an%x09%ad%x09%s\" -n 15; }; f"
+  lgm = "!f() { git log --pretty=format:\"%h%x09%an%x09%ad%x09%s\" -n 50 | sed '/Merge/q'; }; f"
+  co = checkout
+  st = status
+  cob = checkout -b
+  cm = commit
+  amend = commit --amend --no-edit
+  cam = !git add -A && git commit -m
+  up = !git pull --rebase --prune $@ && git submodule update --init --recursive
+[color]
+  # Use colors in Git commands that are capable of colored output when outputting to the terminal
+  ui = auto
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+[color "status"]
+  added = green
+  changed = yellow
+  untracked = cyan
+

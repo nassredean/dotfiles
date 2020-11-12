@@ -1,0 +1,5 @@
+brew "bat"
+brew "fd"
+brew "neovim"
+brew "node"
+brew "ripgrep"
