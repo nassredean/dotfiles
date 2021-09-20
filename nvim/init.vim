@@ -37,26 +37,13 @@ inoremap <expr><S-TAB>  pumvisible() ? '<C-p>' : '<C-h>'
 " enable ddc completion
 call ddc#enable()
 
+" Dashboard configuration
+let g:dashboard_default_executive ='telescope'
+
 " Use full 24-bit colors as defined by your vim theme
 set termguicolors
 " Set vim theme
 colorscheme space-nvim
-
-lua << EOF
-require("bufferline").setup{
-  options = {
-    numbers = "ordinal",
-    offsets = {
-          filetype = "NvimTree",
-          text = function()
-          return vim.fn.getcwd()
-        end,
-        highlight = "Directory",
-        text_align = "left"
-      }
-    }
-  }
-EOF
 
 " Return to last edit position when opening files
 autocmd BufReadPost *
@@ -85,10 +72,11 @@ map <ScrollWheelDown> <C-E>
 map <ScrollWheelUp> <C-Y>
 
 nnoremap <leader>cp :let @*=expand("%")<CR>
-nnoremap <leader>g :Git blame<cr>
-nnoremap <leader>x :Tnew<cr>
-nnoremap <leader>f :Goyo<cr>
-nnoremap <leader>v :<C-V>
+nnoremap <silent><leader>g :Git blame<cr>
+nnoremap <silent><leader>x :Tnew<cr>
+nnoremap <silent><leader>f :TZMinimalist<cr>
+nnoremap <silent><leader>o :Neoformat<cr>
+" nnoremap <leader>v :<C-V>
 nnoremap <Space> :
 
 " BufferLine mappings
@@ -103,6 +91,9 @@ nnoremap <silent><leader>6 <Cmd>BufferLineGoToBuffer 6<CR>
 nnoremap <silent><leader>7 <Cmd>BufferLineGoToBuffer 7<CR>
 nnoremap <silent><leader>8 <Cmd>BufferLineGoToBuffer 8<CR>
 nnoremap <silent><leader>9 <Cmd>BufferLineGoToBuffer 9<CR>
+" Close all buffers except this one with leader bo
+map <leader>bo :%bd\|e#<cr>
+map <leader>bd :bd<cr>
 
 " Telescope mappings
 nnoremap <leader>t <cmd> lua require('telescope.builtin').find_files()<cr>
@@ -111,9 +102,9 @@ nnoremap <leader>b <cmd>lua require('telescope.builtin').buffers()<cr>
 " nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 " NvimTree mappings
-nnoremap <C-n> :NvimTreeToggle<CR>
-nnoremap <leader>r :NvimTreeRefresh<CR>
-nnoremap <leader>n :NvimTreeFindFile<CR>
+nnoremap <silent><C-n> :NvimTreeToggle<CR>
+nnoremap <silent><leader>r :NvimTreeRefresh<CR>
+nnoremap <silent><leader>n :NvimTreeFindFile<CR>
 
 " Leader vimrc opens init.vim
 map <leader>vimrc :tabe ~/.config/nvim/init.vim<cr>
@@ -156,7 +147,5 @@ set wildignore+=*.swp,*.bak,*.pyc,*.class,*.jar,*.gif,*.png,*.jpg
 set wildignore=*.o,*.obj,*.otf,*.eot,*.ttf,*.woff,*.svg,tmp,node_modules
 set wildmenu
 set wrap
-" set filetypes as typescriptreact
-" autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
 
 syntax enable

@@ -1,0 +1,18 @@
+#! /bin/bash
+
+# setup_git() {
+#   [[ ! -f ~/.gitconfig ]] && ln -sfv ~/.vim/.gitconfig ~/
+# }
+# 
+# setup_dependencies() {
+#   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+#   brew bundle
+# }
+
+# This doesn't work
+# It does something (creates symlink) but neovim doesn't see it
+setup_vim() {
+  [[ ! -d ~/.config/nvim ]] && ln -sfv ./nvim ~/.config/nvim
+}
+
+setup_vim
