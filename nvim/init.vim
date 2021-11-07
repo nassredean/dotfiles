@@ -26,18 +26,17 @@ map k gk
 
 nnoremap <leader>cp :let @*=expand("%")<CR>
 nnoremap <silent><leader>g :Git blame<CR>
-nnoremap <silent><leader>x :Tnew<CR>
 nnoremap <silent><leader>f :TZFocus<CR>
 nnoremap <silent><leader>o :Neoformat<CR>
 nnoremap <silent><leader>v :vsp<CR>
 nnoremap <silent><leader>x :sp<CR>
-nnoremap <silent><leader>el :BufferLineCloseLeft<cr>
-nnoremap <silent><leader>er :BufferLineCloseRight<cr>
 nnoremap <Space> :
 
 " BufferLine mappings
 nnoremap <S-TAB> :BufferLineCyclePrev<CR>
 nnoremap <TAB> :BufferLineCycleNext<CR>
+nnoremap <silent><leader>el :BufferLineCloseLeft<cr>
+nnoremap <silent><leader>er :BufferLineCloseRight<cr>
 nnoremap <silent><leader>1 <Cmd>BufferLineGoToBuffer 1<CR>
 nnoremap <silent><leader>2 <Cmd>BufferLineGoToBuffer 2<CR>
 nnoremap <silent><leader>3 <Cmd>BufferLineGoToBuffer 3<CR>
@@ -49,8 +48,8 @@ nnoremap <silent><leader>8 <Cmd>BufferLineGoToBuffer 8<CR>
 nnoremap <silent><leader>9 <Cmd>BufferLineGoToBuffer 9<CR>
 
 " Telescope mappings
-nnoremap <leader>t <cmd> lua require('telescope.builtin').find_files()<CR>
-nnoremap <leader>a <cmd>lua require('telescope.builtin').live_grep()<CR>
+" nnoremap <leader>t <cmd> lua require('telescope.builtin').find_files()<CR>
+" nnoremap <leader>a <cmd>lua require('telescope.builtin').live_grep()<CR>
 nnoremap <leader>b <cmd>lua require('telescope.builtin').buffers()<CR>
 " nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<CR>
 
@@ -58,6 +57,15 @@ nnoremap <leader>b <cmd>lua require('telescope.builtin').buffers()<CR>
 nnoremap <silent><C-n> :NvimTreeToggle<CR>
 nnoremap <silent><leader>r :NvimTreeRefresh<CR>
 nnoremap <silent><leader>n :NvimTreeFindFile<CR>
+
+" Dasbhoard mappings
+nnoremap <leader>ss :<C-u>SessionSave<CR>
+nnoremap <leader>sl :<C-u>SessionLoad<CR>
+nnoremap <silent> <leader>fh :DashboardFindHistory<CR>
+nnoremap <silent> <leader>t :DashboardFindFile<CR>
+nnoremap <silent> <leader>a :DashboardFindWord<CR>
+" nnoremap <silent> <leader>fb :DashboardJumpMark<CR>
+nnoremap <silent> <leader>cn :DashboardNewFile<CR>
 
 set ai
 set backspace=eol,start,indent

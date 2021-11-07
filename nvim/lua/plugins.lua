@@ -103,6 +103,15 @@ return require("packer").startup(
                 vim.g.dashboard_custom_footer = {
                     "λ mind is software λ"
                 }
+                vim.g.dashboard_custom_shortcut = {
+                    last_session = "leader sl",
+                    find_history = "leader fh",
+                    find_file = " leader t",
+                    new_file = "leader cn",
+                    change_colorscheme = "          ",
+                    find_word = " leader a",
+                    book_marks = "          "
+                }
             end
         }
 
@@ -113,7 +122,7 @@ return require("packer").startup(
             requires = {"kyazdani42/nvim-web-devicons", opt = true},
             config = function()
                 require "nvim-tree".setup {
-                  filters = { custom = {".git", "node_modules", ".cache", ".DS_Store"} }
+                    filters = {custom = {".git", "node_modules", ".cache", ".DS_Store"}}
                 }
             end
         }
