@@ -102,10 +102,18 @@ set wildignore+=*.swp,*.bak,*.pyc,*.class,*.jar,*.gif,*.png,*.jpg,*.o,*.obj,*.ot
 set wildmenu
 set wrap
 set completeopt=menu,menuone,noselect
+set switchbuf=uselast
 
 syntax enable
 
 augroup vimSessions
-    autocmd!
-   au VimLeave * SessionSave
+  autocmd!
+  au VimLeave * SessionSave
 augroup END
+
+augroup quickfix
+  autocmd!
+  au FileType qf wincmd J
+augroup END
+
+
