@@ -112,8 +112,9 @@ return require("packer").startup(
             -- optional icons
             requires = {"kyazdani42/nvim-web-devicons", opt = true},
             config = function()
-                vim.g.nvim_tree_ignore = {".git", "node_modules", ".cache", ".DS_Store"}
-                require "nvim-tree".setup {}
+                require "nvim-tree".setup {
+                  filters = { custom = {".git", "node_modules", ".cache", ".DS_Store"} }
+                }
             end
         }
 

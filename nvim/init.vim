@@ -5,7 +5,7 @@ set termguicolors
 " Set vim theme
 colorscheme space-nvim
 filetype plugin on
-filetype indent on
+" filetype indent on
 
 " Map leader to comma
 let g:mapleader = ","
@@ -30,6 +30,7 @@ nnoremap <silent><leader>x :Tnew<CR>
 nnoremap <silent><leader>f :TZFocus<CR>
 nnoremap <silent><leader>o :Neoformat<CR>
 nnoremap <silent><leader>v :vsp<CR>
+nnoremap <silent><leader>x :sp<CR>
 nnoremap <silent><leader>el :BufferLineCloseLeft<cr>
 nnoremap <silent><leader>er :BufferLineCloseRight<cr>
 nnoremap <Space> :
