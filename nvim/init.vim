@@ -104,3 +104,8 @@ set wrap
 set completeopt=menu,menuone,noselect
 
 syntax enable
+
+augroup vimSessions
+    autocmd!
+   au VimLeave * SessionSave
+augroup END
