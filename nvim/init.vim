@@ -103,6 +103,7 @@ set wildmenu
 set wrap
 set completeopt=menu,menuone,noselect
 set switchbuf=uselast
+set hidden
 
 syntax enable
 
@@ -115,5 +116,3 @@ augroup quickfix
   autocmd!
   au FileType qf wincmd J
 augroup END
-
-
