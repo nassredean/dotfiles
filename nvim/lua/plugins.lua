@@ -395,6 +395,7 @@ return require("packer").startup(
 
         -- Language support
         use "fatih/vim-go"
+        use "iloginow/vim-stylus"
         use "yuezk/vim-js"
         use "maxmellon/vim-jsx-pretty"
         use "leafgarland/typescript-vim"
