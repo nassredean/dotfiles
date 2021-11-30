@@ -13,3 +13,4 @@ tap "homebrew/cask"
 cask_args appdir: "/Applications"
 
 cask 'google-chrome'
+cask 'rectangle'
