@@ -7,6 +7,8 @@ brew "node"
 brew "ripgrep"
 brew "jq"
 brew "heroku"
+brew "fish"
+brew "starship"
 
 # applications
 tap "homebrew/cask"

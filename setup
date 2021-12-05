@@ -18,7 +18,25 @@ setup_vim() {
   [[ ! -d ~/.config/nvim ]] && ln -sfv ~/workspace/dotfiles/nvim ~/.config/nvim
 }
 
+setup_fish() {
+  [[ ! -d ~/.config/fish ]] && ln -sfv ~/workspace/dotfiles/fish/config.fish ~/.config/fish/config.fish
+}
+
+setup_fisher() {
+  # This command only works in the fish shell
+  # curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+}
+
+setup_starship() {
+  [[ ! -d ~/.config ]] && ln -sfv ~/workspace/dotfiles/starship.toml ~/.config/starship.toml
+}
+
+setup_fish_colors() {
+  fisher install dracula/fish
+}
+
 setup_git
 setup_dependencies
 setup_packer
 setup_vim
+setup_fisher
