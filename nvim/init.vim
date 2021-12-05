@@ -116,3 +116,5 @@ augroup quickfix
   autocmd!
   au FileType qf wincmd J
 augroup END
+
+lua require('neoscroll').setup()

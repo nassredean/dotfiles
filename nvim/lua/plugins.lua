@@ -133,13 +133,13 @@ return require("packer").startup(
             config = function()
                 require("neoscroll.config").set_mappings(
                     {
-                        ["<C-u>"] = {"scroll", {"-vim.wo.scroll", "true", "250"}},
-                        ["<C-d>"] = {"scroll", {"vim.wo.scroll", "true", "250"}},
+                        ["<C-u>"] = {"scroll", {"-vim.wo.scroll", "true", "0"}},
+                        ["<C-d>"] = {"scroll", {"vim.wo.scroll", "true", "0"}},
                         ["<C-y>"] = {"scroll", {"-0.10", "false", "100"}},
                         ["<C-e>"] = {"scroll", {"0.10", "false", "100"}}
                     }
                 )
-                require("neoscroll").setup()
+                -- require("neoscroll").setup()
             end
         }
 
