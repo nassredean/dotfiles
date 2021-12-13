@@ -10,11 +10,11 @@ set -gx GOPATH "$HOME/go"
 set -gx EDITOR "vim"
 
 fish_add_path "$GOPATH/bin"
-fish_add_path /Users/nassredean/workspace/dev-env/bin
-fish_add_path /Users/nassredean/workspace/dotfiles/bin
-fish_add_path /Users/nassredean/go/bin
+fish_add_path "$HOME/workspace/dev-env/bin"
+fish_add_path "$HOME/workspace/dotfiles/bin"
+fish_add_path "$HOME/go/bin"
 fish_add_path /opt/homebrew/opt/libpq/bin
-fish_add_path /Users/nassredean/.deno/bin
+fish_add_path "$HOME/.deno/bin"
 
 function cat
   bat $argv
