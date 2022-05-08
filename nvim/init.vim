@@ -11,9 +11,6 @@ filetype plugin on
 let g:mapleader = ","
 let mapleader = ","
 
-" Godot config
-let g:godot_executable = '/Applications/Godot.app'
-
 " Map control keys for window navigation
 map <C-h> <C-W>h
 map <C-j> <C-W>j
@@ -35,17 +32,6 @@ nnoremap <Space> :
 " BufferLine mappings
 nnoremap <S-TAB> :BufferLineCyclePrev<CR>
 nnoremap <TAB> :BufferLineCycleNext<CR>
-nnoremap <silent><leader>el :BufferLineCloseLeft<cr>
-nnoremap <silent><leader>er :BufferLineCloseRight<cr>
-nnoremap <silent><leader>1 <Cmd>BufferLineGoToBuffer 1<CR>
-nnoremap <silent><leader>2 <Cmd>BufferLineGoToBuffer 2<CR>
-nnoremap <silent><leader>3 <Cmd>BufferLineGoToBuffer 3<CR>
-nnoremap <silent><leader>4 <Cmd>BufferLineGoToBuffer 4<CR>
-nnoremap <silent><leader>5 <Cmd>BufferLineGoToBuffer 5<CR>
-nnoremap <silent><leader>6 <Cmd>BufferLineGoToBuffer 6<CR>
-nnoremap <silent><leader>7 <Cmd>BufferLineGoToBuffer 7<CR>
-nnoremap <silent><leader>8 <Cmd>BufferLineGoToBuffer 8<CR>
-nnoremap <silent><leader>9 <Cmd>BufferLineGoToBuffer 9<CR>
 
 " Telescope mappings
 " nnoremap <leader>t <cmd> lua require('telescope.builtin').find_files()<CR>
@@ -92,10 +78,8 @@ set showmatch
 set si
 set smartcase
 set t_Co=256
-set expandtab
 set shiftwidth=2
 set tabstop=2
-set softtabstop=2
 set termguicolors
 set whichwrap+=<,>,h,l
 set wildignore+=*.swp,*.bak,*.pyc,*.class,*.jar,*.gif,*.png,*.jpg,*.o,*.obj,*.otf,*.eot,*.ttf,*.woff,*.svg,tmp,node_modules,.DS_Store,.cache,.git

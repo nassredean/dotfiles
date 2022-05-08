@@ -19,7 +19,7 @@ augroup end
 )
 
 return require("packer").startup(
-function()
+function(use)
   -- Packer can manage itself
   use "wbthomason/packer.nvim"
 
@@ -35,13 +35,12 @@ function()
         defaults = {
           -- path_display = {"smart"},
           file_ignore_patterns = {
-            "node_modules",
+            "node_modules/",
             "mocks/",
             "tmp",
             ".cache",
             ".git",
             ".DS_Store",
-            "package-lock.json",
             "^.+%.swp",
             "^.+%.bak",
             "^.+%.pyc",
@@ -193,9 +192,8 @@ function()
 
   -- Statusline
   use {
-    "glepnir/galaxyline.nvim",
-    branch = "main",
-    -- your statusline
+    'dsych/galaxyline.nvim',
+    branch = 'bugfix/diagnostics',
     config = function()
       require "statusline"
     end,
@@ -303,8 +301,8 @@ function()
             "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>",
             opts
             )
-            buf_set_keymap("n", "gb", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
-            buf_set_keymap("n", "gn", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
+            buf_set_keymap("n", "gn", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+            buf_set_keymap("n", "gN", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
           end
         }
 
@@ -381,6 +379,8 @@ function()
       }
     end
   }
+
+  use "tpope/vim-sleuth"
 
   -- Autopairs
   use "windwp/nvim-autopairs"

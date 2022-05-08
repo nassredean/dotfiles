@@ -15,7 +15,7 @@ setup_packer() {
 }
 
 setup_vim() {
-  [[ ! -d ~/.config/nvim ]] && ln -sfv ~/workspace/dotfiles/nvim ~/.config/nvim
+  [[ ! -d ~/.config/nvim ]] && ln -sfv ~/workspace/dotfiles/nvim ~/.config
 }
 
 setup_fish() {
