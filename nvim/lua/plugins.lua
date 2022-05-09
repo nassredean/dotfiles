@@ -342,6 +342,18 @@ return require("packer").startup({function(use)
     -- Autopairs
     use "windwp/nvim-autopairs"
 
+    -- Markdown preview
+    use { 'iamcco/markdown-preview.nvim',
+      run = 'cd app && npm install',
+      setup = function()
+        vim.g.mkdp_filetypes = { 'markdown' }
+      end,
+      ft = { 'markdown' }
+    }
+
+    -- Rainbow parens using treesitter
+    use { 'p00f/nvim-ts-rainbow', after = { 'nvim-treesitter' } }
+
     -- Language support
     use "tikhomirov/vim-glsl"
     use "tomlion/vim-solidity"
