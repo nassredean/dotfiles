@@ -1,399 +1,348 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
-
--- Bootstrap packer if it does not exist
 local fn = vim.fn
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+local compile_path = install_path .. "/plugin/packer_compiled.lua"
+local packer_bootstrap = nil
+
 if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system({"git", "clone", "https://github.com/wbthomason/packer.nvim", install_path})
-  vim.cmd "packadd packer.nvim"
+    packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
+                                  install_path})
 end
 
--- Run PackerCopmile on save of plugins.lua
-vim.cmd(
-[[
-augroup packer_user_config
-autocmd!
-autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-augroup end
-]]
-)
+return require("packer").startup({function(use)
+    -- Packer can manage itself
+    use "wbthomason/packer.nvim"
 
-return require("packer").startup(
-function(use)
-  -- Packer can manage itself
-  use "wbthomason/packer.nvim"
-
-  -- File explorer
-  use {
-    "nvim-telescope/telescope.nvim",
-    requires = {{"nvim-lua/plenary.nvim"}},
-    config = function()
-      local actions = require "telescope.actions"
-
-      require("telescope").setup(
-      {
-        defaults = {
-          -- path_display = {"smart"},
-          file_ignore_patterns = {
-            "node_modules/",
-            "mocks/",
-            "tmp",
-            ".cache",
-            ".git",
-            ".DS_Store",
-            "^.+%.swp",
-            "^.+%.bak",
-            "^.+%.pyc",
-            "^.+%.jar",
-            "^.+%.o$",
-            "^.+%.obj",
-            "^.+%.otf",
-            "^.+%.eot",
-            "^.+%.ttf$",
-            "^.+%.woff"
-          }
-        },
-        pickers = {
-          buffers = {
-            mappings = {
-              i = {
-                ["<c-q>"] = actions.delete_buffer + actions.move_to_top
-              }
+    -- Needed to load first
+    use {'nathom/filetype.nvim'}
+    use {'nvim-lua/plenary.nvim'}
+    use {'kyazdani42/nvim-web-devicons'}
+    use {
+        'glepnir/dashboard-nvim',
+        config = function()
+            vim.g.indentLine_fileTypeExclude = {"dashboard"}
+            vim.g.dashboard_custom_header = {"            ", "    ╓╓╓╓    ", "   ┌╨╨╨╨┐   ",
+                                             "   │    ├┐  ", "   │$ $ └│  ", "   │ <  └┘  ",
+                                             "   │    │   ", "   │┼─┼ │   ", "   │    │   ",
+                                             "   └──┘ │   ", "     │  │   ", "     │  │   "}
+            vim.g.dashboard_default_executive = "telescope"
+            vim.g.dashboard_custom_footer = {"λ mind is software λ"}
+            vim.g.dashboard_custom_shortcut = {
+                last_session = "leader sl",
+                find_history = "leader fh",
+                find_file = " leader t",
+                new_file = "leader cn",
+                change_colorscheme = "          ",
+                find_word = " leader a",
+                book_marks = "          "
             }
-          }
+        end
+    }
+
+    -- Themes
+    use { 'folke/tokyonight.nvim' }
+    -- use "nassredean/space-nvim"
+
+    -- Treesitter
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        config = "require('plugins.treesitter')"
+    }
+    use {
+        'nvim-treesitter/nvim-treesitter-textobjects',
+        after = {'nvim-treesitter'}
+    }
+    use {
+        'RRethy/nvim-treesitter-textsubjects',
+        after = {'nvim-treesitter'}
+    }
+    use {
+        'm-demare/hlargs.nvim',
+        config = function()
+            require('hlargs').setup()
+        end
+    }
+
+    -- Telescope 
+    use {
+        "nvim-telescope/telescope.nvim",
+        requires = {
+            { 'nvim-lua/popup.nvim' },
+            { 'nvim-lua/plenary.nvim' },
+          },
+        config = function()
+            local actions = require "telescope.actions"
+
+            require("telescope").setup({
+                defaults = {
+                    -- path_display = {"smart"},
+                    file_ignore_patterns = {"node_modules/", "mocks/", "tmp", ".cache", ".git", ".DS_Store", "^.+%.swp",
+                                            "^.+%.bak", "^.+%.pyc", "^.+%.jar", "^.+%.o$", "^.+%.obj", "^.+%.otf",
+                                            "^.+%.eot", "^.+%.ttf$", "^.+%.woff"}
+                },
+                pickers = {
+                    buffers = {
+                        mappings = {
+                            i = {
+                                ["<c-q>"] = actions.delete_buffer + actions.move_to_top
+                            }
+                        }
+                    }
+                }
+            })
+        end
+    }
+
+    -- LSP
+    use {"neovim/nvim-lspconfig"}
+
+    -- LSP Cmp
+    use {
+        'hrsh7th/nvim-cmp',
+        event = 'InsertEnter',
+        config = "require('plugins.cmp')"
+    }
+    use {
+        'hrsh7th/cmp-nvim-lua',
+        after = 'nvim-cmp'
+    }
+    use {
+        'hrsh7th/cmp-nvim-lsp',
+        after = 'cmp-nvim-lua'
+    }
+    use {
+        'hrsh7th/cmp-buffer',
+        after = 'cmp-nvim-lsp'
+    }
+    use {
+        'hrsh7th/cmp-path',
+        after = 'cmp-buffer'
+    }
+    use {
+        'hrsh7th/cmp-cmdline',
+        after = 'cmp-path'
+    }
+    use {
+        'hrsh7th/cmp-calc',
+        after = 'cmp-cmdline'
+    }
+
+    -- LSP Addons
+    use {
+        'williamboman/nvim-lsp-installer',
+        after = 'cmp-nvim-lsp',
+        requires = "hrsh7th/cmp-nvim-lsp",
+        config = function()
+            require("nvim-lsp-installer").setup {
+                -- A list of servers to automatically install if they're not already installed
+                ensure_installed = {"bashls", "cssls", "eslint", "graphql", "html", "jsonls", "sumneko_lua",
+                                    "tailwindcss", "tsserver", "vetur", "vuels"},
+                -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed
+                automatic_installation = true
+            }
+            local lspconfig = require("lspconfig")
+
+            local handlers = {
+                ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+                    border = 'rounded'
+                }),
+                ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+                    border = 'rounded'
+                })
+            }
+
+            local function on_attach(client, bufnr)
+                -- set up buffer keymaps, etc.
+            end
+
+            local on_ts_attach = function(client, bufnr)
+                client.server_capabilities.document_formatting = false
+                client.server_capabilities.document_range_formatting = false
+
+                local function buf_set_option(...)
+                    vim.api.nvim_buf_set_option(bufnr, ...)
+                end
+                buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+
+            end
+
+            local capabilities = vim.lsp.protocol.make_client_capabilities()
+            local cmp_nvim_lsp_ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
+            if cmp_nvim_lsp_ok then
+                capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+                lspconfig.eslint.setup {
+                    capabilities = capabilities,
+                    handlers = handlers,
+                    on_attach = require('lsp.servers.eslint').on_attach,
+                    settings = require('lsp.servers.eslint').settings
+                }
+
+                lspconfig.jsonls.setup {
+                    capabilities = capabilities,
+                    handlers = handlers,
+                    on_attach = on_attach,
+                    settings = require('lsp.servers.jsonls').settings
+                }
+
+                lspconfig.sumneko_lua.setup {
+                    handlers = handlers,
+                    on_attach = on_attach,
+                    settings = require('lsp.servers.sumneko_lua').settings
+                }
+
+                local tscapabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol
+                                                                                       .make_client_capabilities())
+                tscapabilities.textDocument.completion.completionItem.snippetSupport = true
+                tscapabilities.textDocument.completion.completionItem.preselectSupport = true
+                tscapabilities.textDocument.completion.completionItem.insertReplaceSupport = true
+                tscapabilities.textDocument.completion.completionItem.labelDetailsSupport = true
+                tscapabilities.textDocument.completion.completionItem.deprecatedSupport = true
+                tscapabilities.textDocument.completion.completionItem.commitCharactersSupport = true
+                tscapabilities.textDocument.completion.completionItem.tagSupport = {
+                    valueSet = {1}
+                }
+                tscapabilities.textDocument.completion.completionItem.resolveSupport = {
+                    properties = {'documentation', 'detail', 'additionalTextEdits'}
+                }
+                tscapabilities.textDocument.codeAction = {
+                    dynamicRegistration = false,
+                    codeActionLiteralSupport = {
+                        codeActionKind = {
+                            valueSet = {"", "quickfix", "refactor", "refactor.extract", "refactor.inline",
+                                        "refactor.rewrite", "source", "source.organizeImports"}
+                        }
+                    }
+                }
+
+                -- It enables tsserver automatically so no need to call lspconfig.tsserver.setup
+                require("typescript").setup({
+                    disable_commands = false, -- prevent the plugin from creating Vim commands
+                    disable_formatting = false, -- disable tsserver's formatting capabilities
+                    debug = false, -- enable debug logging for commands
+                    -- LSP Config options
+                    server = {
+                        capabilities = tscapabilities,
+                        handlers = handlers,
+                        on_attach = on_ts_attach
+                    }
+                })
+
+                for _, server in ipairs {"bashls", "cssls", "html"} do
+                    lspconfig[server].setup {
+                        on_attach = on_attach,
+                        capabilities = capabilities,
+                        handlers = handlers
+                    }
+                end
+
+            end
+
+        end
+
+    }
+    use {
+        'stevearc/dressing.nvim',
+        requires = 'MunifTanjim/nui.nvim',
+        config = "require('plugins.dressing')"
+    }
+    use {'onsails/lspkind-nvim'}
+    use {
+        'folke/lsp-trouble.nvim',
+        config = "require('plugins.trouble')"
+    }
+    use {'nvim-lua/popup.nvim'}
+    use {
+        'SmiteshP/nvim-gps',
+        config = "require('plugins.gps')",
+        after = 'nvim-treesitter'
+    }
+    use {
+        'jose-elias-alvarez/typescript.nvim',
+        after = 'nvim-treesitter'
+    }
+
+    use {'rcarriga/nvim-notify'}
+
+
+    -- Nvim Tree / Rooter
+    use { 'kyazdani42/nvim-tree.lua', config = "require('plugins.tree')" }
+    use { 'airblade/vim-rooter', setup = function() vim.g.rooter_patterns = {'.git', 'package.json', '_darcs', '.bzr', '.svn', 'Makefile'} end }
+
+    -- Git
+    use "tpope/vim-fugitive"
+
+    -- Better formatting
+    use "sbdchd/neoformat"
+
+    -- Indentation guides
+    use "lukas-reineke/indent-blankline.nvim"
+
+
+    -- Better commenting
+    use {
+        "terrortylor/nvim-comment",
+        config = function()
+            require("nvim_comment").setup({
+                comment_empty = false,
+                create_mappings = true,
+                line_mapping = "<leader>cl",
+                operator_mapping = "<leader>c"
+            })
+        end
+    }
+
+    -- Statusline
+    use {
+        'dsych/galaxyline.nvim',
+        branch = 'bugfix/diagnostics',
+        config = function()
+            require "statusline"
+        end,
+        -- optional icons
+        requires = {
+            "kyazdani42/nvim-web-devicons",
+            opt = true
         }
-      }
-      )
-    end
-  }
+    }
 
-  -- Git
-  use "tpope/vim-fugitive"
-
-  -- Terminal in git
-  use "kassio/neoterm"
-
-  -- Better formatting
-  use "sbdchd/neoformat"
-
-  -- Indentation guides
-  use "lukas-reineke/indent-blankline.nvim"
-
-  -- Dashboard
-  use {
-    "glepnir/dashboard-nvim",
-    config = function()
-      vim.g.indentLine_fileTypeExclude = {"dashboard"}
-      vim.g.dashboard_custom_header = {
-        "            ",
-        "    ╓╓╓╓    ",
-        "   ┌╨╨╨╨┐   ",
-        "   │    ├┐  ",
-        "   │$ $ └│  ",
-        "   │ <  └┘  ",
-        "   │    │   ",
-        "   │┼─┼ │   ",
-        "   │    │   ",
-        "   └──┘ │   ",
-        "     │  │   ",
-        "     │  │   "
-      }
-      vim.g.dashboard_default_executive = "telescope"
-      vim.g.dashboard_custom_footer = {
-        "λ mind is software λ"
-      }
-      vim.g.dashboard_custom_shortcut = {
-        last_session = "leader sl",
-        find_history = "leader fh",
-        find_file = " leader t",
-        new_file = "leader cn",
-        change_colorscheme = "          ",
-        find_word = " leader a",
-        book_marks = "          "
-      }
-    end
-  }
-
-  -- File explorer
-  use {
-    "kyazdani42/nvim-tree.lua",
-    -- optional icons
-    requires = {"kyazdani42/nvim-web-devicons", opt = true},
-    config = function()
-      require "nvim-tree".setup {
-        filters = {custom = {".git", "node_modules", ".cache", ".DS_Store"}}
-      }
-    end
-  }
-
-  -- Scroll
-  use {
-    "karb94/neoscroll.nvim",
-    config = function()
-      require("neoscroll.config").set_mappings(
-      {
-        ["<C-u>"] = {"scroll", {"-vim.wo.scroll", "true", "0"}},
-        ["<C-d>"] = {"scroll", {"vim.wo.scroll", "true", "0"}},
-        ["<C-y>"] = {"scroll", {"-0.10", "false", "100"}},
-        ["<C-e>"] = {"scroll", {"0.10", "false", "100"}}
-      }
-      )
-      -- require("neoscroll").setup()
-    end
-  }
-
-  -- Better commenting
-  use {
-    "terrortylor/nvim-comment",
-    config = function()
-      require("nvim_comment").setup(
-      {
-        comment_empty = false,
-        create_mappings = true,
-        line_mapping = "<leader>cl",
-        operator_mapping = "<leader>c"
-      }
-      )
-    end
-  }
-
-  -- File explorer
-  use {
-    "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
-    config = function()
-      require("nvim-treesitter.configs").setup(
-      {
-        ensure_installed = {
-          "c",
-          "javascript",
-          "typescript",
-          "go",
-          "ruby",
-          "python",
-          "bash",
-          "lua",
-          "vim"
-        }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-        ignore_install = {}, -- List of parsers to ignore installing
-        highlight = {
-          enable = true, -- false will disable the whole extension
-          -- disable = { },  -- list of language that will be disabled
-          -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-          -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-          -- Using this option may slow down your editor, and you may see some duplicate highlights.
-          -- Instead of true it can also be a list of languages
-          additional_vim_regex_highlighting = false
-        }
-      }
-      )
-    end
-  }
-
-  -- Statusline
-  use {
-    'dsych/galaxyline.nvim',
-    branch = 'bugfix/diagnostics',
-    config = function()
-      require "statusline"
-    end,
-    -- optional icons
-    requires = {"kyazdani42/nvim-web-devicons", opt = true}
-  }
-
-  -- Better bufferline
-  use {
-    "akinsho/bufferline.nvim",
-    requires = {"kyazdani42/nvim-web-devicons", opt = true},
-    config = function()
-      require("bufferline").setup {
-        options = {
-          diagnostics = "nvim_lsp",
-          diagnostics_indicator = function(count, level, diagnostics_dict, context)
-            local icon = level:match("error") and " " or " "
-            return " " .. icon .. count
-          end,
-          numbers = "ordinal",
-          offsets = {
-            filetype = "NvimTree",
-            text = function()
-              return vim.fn.getcwd()
-            end,
-            highlight = "Directory",
-            text_align = "left"
-          }
-        }
-      }
-    end
-  }
-
-  -- Focus mode
-  use {
-    "Pocco81/TrueZen.nvim",
-    config = function()
-      local true_zen = require("true-zen")
-
-      true_zen.setup(
-      {
-        ui = {},
-        integrations = {
-          galaxyline = true,
-          nvim_bufferline = true
-        }
-      }
-      )
-    end
-  }
-
-  -- Color scheme plugins
-  use "nassredean/space-nvim"
-
-  -- Colorize hex codes
-  use {
-    "norcalli/nvim-colorizer.lua",
-    config = function()
-      require("colorizer").setup()
-    end
-  }
-
-  -- LSP
-  use {
-    "neovim/nvim-lspconfig"
-  }
-
-  use {
-
-    'williamboman/nvim-lsp-installer',
-    requires = {{"neovim/nvim-lspconfig"}, {"hrsh7th/cmp-nvim-lsp"}},
-    config = function()
-      local lsp_installer = require("nvim-lsp-installer")
-
-      -- Register a handler that will be called for all installed servers.
-      -- Alternatively, you may also register handlers on specific server instances instead (see example below).
-      lsp_installer.on_server_ready(function(server)
-        local opts = {
-          capabilities = require("cmp_nvim_lsp").update_capabilities(
-          vim.lsp.protocol.make_client_capabilities()
-          ),
-          on_attach = function(client, bufnr)
-
-            -- Add keybinds
-            local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-            local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
-            -- Enable completion triggered by <c-x><c-o>
-            buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-            -- Mappings.
-            local opts = { noremap=true, silent=true }
-
-            -- See `:help vim.lsp.*` for documentation on any of the below functions
-            buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-            buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-            buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-            buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-            buf_set_keymap("n", "rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-            buf_set_keymap("n", "ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-            buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-            buf_set_keymap(
-            "n",
-            "<space>e",
-            "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>",
-            opts
-            )
-            buf_set_keymap("n", "gn", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
-            buf_set_keymap("n", "gN", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
-          end
-        }
-
-        -- This setup() function is exactly the same as lspconfig's setup function.
-        -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-        server:setup(opts)
-      end)
-    end
-  }
-
-  -- LSP completion
-  use {
-    "hrsh7th/cmp-nvim-lsp",
-    requires = {{"neovim/nvim-lspconfig"}}
-  }
-  use {
-    "hrsh7th/cmp-buffer",
-    requires = {{"neovim/nvim-lspconfig"}}
-  }
-
-  use {"L3MON4D3/LuaSnip"}
-  use {
-    "saadparwaiz1/cmp_luasnip",
-    requires = {"neovim/nvim-lspconfig", "L3MON4D3/LuaSnip"}
-  }
-  use {
-    "hrsh7th/nvim-cmp",
-    requires = {
-      {"neovim/nvim-lspconfig"},
-      {"hrsh7th/cmp-buffer"},
-      {"hrsh7th/cmp-nvim-lsp"},
-      {"L3MON4D3/LuaSnip"}
-    },
-    config = function()
-      local cmp = require "cmp"
-
-      cmp.setup(
-      {
-        snippet = {
-          expand = function(args)
-            require "luasnip".lsp_expand(args.body)
-          end
+    -- Better bufferline
+    use {
+        "akinsho/bufferline.nvim",
+        requires = {
+            "kyazdani42/nvim-web-devicons",
+            opt = true
         },
-        mapping = {
-          ["<Tab>"] = cmp.mapping.select_next_item({behavior = cmp.SelectBehavior.Insert}),
-          ["<S-Tab>"] = cmp.mapping.select_prev_item({behavior = cmp.SelectBehavior.Insert}),
-          ["<C-e>"] = cmp.mapping.close(),
-          ["<C-f>"] = cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true
-          }
-        },
-        sources = {
-          {name = "luasnip"},
-          {name = "nvim_lsp"},
-          {name = "buffer"}
-        }
-      }
-      )
-    end
-  }
+        config = function()
+            require("bufferline").setup {
+                options = {
+                    diagnostics = "nvim_lsp",
+                    diagnostics_indicator = function(count, level, diagnostics_dict, context)
+                        local icon = level:match("error") and " " or " "
+                        return " " .. icon .. count
+                    end,
+                    numbers = "ordinal",
+                    offsets = {
+                        filetype = "NvimTree",
+                        text = function()
+                            return vim.fn.getcwd()
+                        end,
+                        highlight = "Directory",
+                        text_align = "left"
+                    }
+                }
+            }
+        end
+    }
 
-  -- LSP completion pictograms
-  use {
-    "onsails/lspkind-nvim",
-    requires = {{"neovim/nvim-lspconfig"}, {"neovim/nvim-cmp"}},
-    config = function()
-      local cmp = require "cmp"
-      local lspkind = require("lspkind")
-      cmp.setup {
-        formatting = {
-          format = lspkind.cmp_format({with_text = false, maxwidth = 50})
-        }
-      }
-    end
-  }
+    -- Colorize hex codes
+    use { 'norcalli/nvim-colorizer.lua', config = "require('plugins.colorizer')" }
 
-  use "tpope/vim-sleuth"
+    use "tpope/vim-sleuth"
 
-  -- Autopairs
-  use "windwp/nvim-autopairs"
+    -- Autopairs
+    use "windwp/nvim-autopairs"
 
-  -- Language support
-  use "fatih/vim-go"
-  use "iloginow/vim-stylus"
-  use "yuezk/vim-js"
-  use "maxmellon/vim-jsx-pretty"
-  use "leafgarland/typescript-vim"
-  use "tikhomirov/vim-glsl"
-  use "elzr/vim-json"
-  use "tomlion/vim-solidity"
-  use "habamax/vim-godot"
-end
-)
+    -- Language support
+    use "tikhomirov/vim-glsl"
+    use "tomlion/vim-solidity"
+end})
