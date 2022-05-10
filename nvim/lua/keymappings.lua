@@ -41,20 +41,17 @@ keymap("n", "<Tab>", ":BufferLineCycleNext<CR>", silent)
 keymap("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", silent)
 
 -- Don't yank on delete char
-keymap("n", "x", '"_x', silent)
-keymap("n", "X", '"_X', silent)
-keymap("v", "x", '"_x', silent)
-keymap("v", "X", '"_X', silent)
+-- keymap("n", "x", '"_x', silent)
+-- keymap("n", "X", '"_X', silent)
+-- keymap("v", "x", '"_x', silent)
+-- keymap("v", "X", '"_X', silent)
 
 -- Don't yank on visual paste
 keymap("v", "p", '"_dP', silent)
 
--- Quickfix
--- keymap("n", "<Space>,", ":cp<CR>", silent)
--- keymap("n", "<Space>.", ":cn<CR>", silent)
 
--- Toggle quicklist
--- keymap("n", "<leader>q", "<cmd>lua require('utils').toggle_quicklist()<CR>", silent)
+-- Remap space to : in normal mode
+keymap("n", "<Space>", ": ", { silent = false })
 
 -- Open links under cursor in browser with gx
 if vim.fn.has('macunix') == 1 then
@@ -62,6 +59,8 @@ if vim.fn.has('macunix') == 1 then
 else
   keymap("n", "gx", "<cmd>silent execute '!xdg-open ' . shellescape('<cWORD>')<CR>", silent)
 end
+
+--- need session load behavior back
 
 -- LSP
 keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", silent)
