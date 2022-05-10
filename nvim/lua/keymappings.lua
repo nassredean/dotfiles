@@ -51,7 +51,7 @@ keymap("v", "p", '"_dP', silent)
 
 
 -- Remap space to : in normal mode
-keymap("n", "<Space>", ": ", { silent = false })
+keymap("n", "<Space>", ": ", silent)
 
 -- Open links under cursor in browser with gx
 if vim.fn.has('macunix') == 1 then
@@ -61,6 +61,8 @@ else
 end
 
 --- need session load behavior back
+keymap("n", "<Leader>ss", ":SessionSave<CR>", silent)
+keymap("n", "<Leader>sl", ":SessionLoad<CR>", silent)
 
 -- LSP
 keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", silent)
