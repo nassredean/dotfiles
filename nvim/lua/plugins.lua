@@ -159,6 +159,8 @@ return require("packer").startup(
             -- Colorize hex codes
             use {"norcalli/nvim-colorizer.lua", config = "require('plugins.colorizer')"}
 
+            use { 'L3MON4D3/LuaSnip', requires = { 'rafamadriz/friendly-snippets' }, after = 'cmp_luasnip' }
+
             -- Autopairs
             use {
                 "windwp/nvim-autopairs",

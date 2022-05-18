@@ -7,6 +7,13 @@ if not cmp_status_ok then
   return
 end
 
+local snip_status_ok, luasnip = pcall(require, "luasnip")
+if not snip_status_ok then
+  return
+end
+
+require("luasnip/loaders/from_vscode").lazy_load()
+
 -- Utils
 local check_backspace = function()
   local col = vim.fn.col "." - 1
@@ -20,6 +27,7 @@ local source_mapping = {
   npm         = icons.terminal .. '[NPM]',
   nvim_lsp    = icons.paragraph .. '[LSP]',
   nvim_lua    = icons.bomb,
+  luasnip     = icons.snippet,
   path        = icons.folderOpen2,
   treesitter  = icons.tree,
   zsh         = icons.terminal .. '[ZSH]',
@@ -37,6 +45,11 @@ local buffer_option = {
 }
 
 cmp.setup {
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end
+  },
   mapping = cmp.mapping.preset.insert({
     ['<C-k>'] = cmp.mapping.select_prev_item(),
     ['<C-j>'] = cmp.mapping.select_next_item(),
