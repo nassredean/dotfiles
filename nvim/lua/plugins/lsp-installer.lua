@@ -4,14 +4,12 @@ require("nvim-lsp-installer").setup {
         "bashls",
         "cssls",
         "eslint",
-        "graphql",
         "html",
         "jsonls",
         "sumneko_lua",
         "tailwindcss",
         "tsserver",
-        "vetur",
-        "vuels"
+        "omnisharp"
     },
     -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed
     automatic_installation = true
@@ -119,7 +117,7 @@ if cmp_nvim_lsp_ok then
         }
     )
 
-    for _, server in ipairs {"bashls", "cssls", "html"} do
+    for _, server in ipairs {"bashls", "cssls", "html", "omnisharp"} do
         lspconfig[server].setup {
             on_attach = on_attach,
             capabilities = capabilities,
