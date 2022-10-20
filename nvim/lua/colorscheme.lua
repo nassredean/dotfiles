@@ -7,7 +7,7 @@ vim.g.tokyonight_colors = {
     border = "#1A1B26"
 }
 
-vim.cmd("colorscheme " .. "tokyonight")
+vim.cmd("colorscheme " .. "tokyonight-night")
 
 -- Cursor line
 vim.highlight.create(

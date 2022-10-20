@@ -9,12 +9,14 @@ require("nvim-lsp-installer").setup {
         "sumneko_lua",
         "tailwindcss",
         "tsserver",
-        "omnisharp"
+        "csharp_ls"
     },
     -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed
     automatic_installation = true
 }
+
 local lspconfig = require("lspconfig")
+local util = require("lspconfig/util")
 
 local handlers = {
     ["textDocument/hover"] = vim.lsp.with(
@@ -49,7 +51,7 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 local cmp_nvim_lsp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if cmp_nvim_lsp_ok then
-    capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    capabilities = cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
     lspconfig.eslint.setup {
         capabilities = capabilities,
@@ -66,12 +68,20 @@ if cmp_nvim_lsp_ok then
     }
 
     lspconfig.sumneko_lua.setup {
+        capabilities = capabilities,
         handlers = handlers,
         on_attach = on_attach,
         settings = require("lsp.servers.sumneko_lua").settings
     }
 
-    local tscapabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    lspconfig.csharp_ls.setup {
+        capabilities = capabilities,
+        handlers = handlers,
+        on_attach = on_attach,
+    }
+
+
+    local tscapabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
     tscapabilities.textDocument.completion.completionItem.snippetSupport = true
     tscapabilities.textDocument.completion.completionItem.preselectSupport = true
     tscapabilities.textDocument.completion.completionItem.insertReplaceSupport = true
@@ -117,7 +127,7 @@ if cmp_nvim_lsp_ok then
         }
     )
 
-    for _, server in ipairs {"bashls", "cssls", "html", "omnisharp"} do
+    for _, server in ipairs {"bashls", "cssls", "html"} do
         lspconfig[server].setup {
             on_attach = on_attach,
             capabilities = capabilities,
