@@ -125,6 +125,12 @@ return require("packer").startup(
                 "jose-elias-alvarez/typescript.nvim",
                 after = "nvim-treesitter"
             }
+            use {
+                "lvimuser/lsp-inlayhints.nvim",
+                config = function()
+                    require("lsp-inlayhints").setup()
+                end
+            }
 
             use {"rcarriga/nvim-notify"}
 
