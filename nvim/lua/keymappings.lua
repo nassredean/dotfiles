@@ -49,6 +49,10 @@ keymap("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", silent)
 -- Don't yank on visual paste
 keymap("v", "p", '"_dP', silent)
 
+-- Fix stupid search behavior
+keymap("n", "n", "/<CR>")
+keymap("n", "N", "?<CR>")
+
 
 -- Remap space to : in normal mode
 keymap("n", "<Space>", ": ", silent)
