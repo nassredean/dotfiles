@@ -26,10 +26,6 @@ return require("packer").startup(
             use {"nathom/filetype.nvim"}
             use {"nvim-lua/plenary.nvim"}
             use {"kyazdani42/nvim-web-devicons"}
-            use {
-                "glepnir/dashboard-nvim",
-                config = "require('plugins.dashboard')"
-            }
 
             -- Themes
             use {"folke/tokyonight.nvim"}
@@ -117,11 +113,6 @@ return require("packer").startup(
             }
             use {"nvim-lua/popup.nvim"}
             use {
-                "SmiteshP/nvim-gps",
-                config = "require('plugins.gps')",
-                after = "nvim-treesitter"
-            }
-            use {
                 "jose-elias-alvarez/typescript.nvim",
                 after = "nvim-treesitter"
             }
@@ -178,7 +169,7 @@ return require("packer").startup(
             use {"tpope/vim-surround"}
             use {"tpope/vim-repeat"}
             use "tpope/vim-sleuth"
-            use {"ecosse3/galaxyline.nvim", after = "nvim-gps", config = "require('plugins.galaxyline')"}
+            use {"ecosse3/galaxyline.nvim", config = "require('plugins.galaxyline')"}
 
             -- Language support
             use "tikhomirov/vim-glsl"

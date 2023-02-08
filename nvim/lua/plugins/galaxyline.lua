@@ -3,7 +3,6 @@
 
 local gl = require("galaxyline")
 local condition = require("galaxyline.condition")
-local gps = require("nvim-gps")
 local tokyonight_colors = require("tokyonight.colors").setup({})
 
 -- Configuration {{{1
@@ -95,8 +94,6 @@ local colors = {
     shorttext = "#000000",
     shortrightbg = "#3F3F3F",
     shortrighttext = "#7C4C4E",
-    gpsbg = "#5C00A3",
-    gpstext = "#C5C5C5",
     red = "#D16969",
     yellow = "#DCDCAA",
     magenta = "#D16D9E",
@@ -449,23 +446,6 @@ table.insert(
                 return rightbracket .. " "
             end,
             highlight = {colors.lspbg, colors.bg}
-        }
-    }
-)
--- }}}3
-
--- GPS {{{3
-table.insert(
-    gls.left,
-    {
-        nvimGPS = {
-            provider = function()
-                return gps.get_location()
-            end,
-            condition = function()
-                return gps.is_available() and #gps.get_location() > 0
-            end,
-            highlight = {colors.gpstext, colors.bg}
         }
     }
 )
