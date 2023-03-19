@@ -9,11 +9,11 @@ set -gx GOPATH "$HOME/go"
 fish_add_path "$GOPATH/bin"
 fish_add_path "$HOME/neovim/bin"
 
-function vim
+function vim --wraps nvim
   nvim $argv
 end
 
-function cat
+function cat --wraps bat
   bat $argv
 end
 
