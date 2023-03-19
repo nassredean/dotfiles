@@ -61,7 +61,12 @@ return require("packer").startup(
             }
 
             -- LSP
-            use {"neovim/nvim-lspconfig"}
+            use {
+                "neovim/nvim-lspconfig",
+                after = "cmp-nvim-lsp",
+                requires = "hrsh7th/cmp-nvim-lsp",
+                config = "require('plugins.lspconfig')"
+            }
 
             -- LSP Cmp
             use {
@@ -94,13 +99,6 @@ return require("packer").startup(
                 after = "cmp-cmdline"
             }
 
-            -- LSP Addons
-            use {
-                "williamboman/nvim-lsp-installer",
-                after = "cmp-nvim-lsp",
-                requires = "hrsh7th/cmp-nvim-lsp",
-                config = "require('plugins.lsp-installer')"
-            }
             use {
                 "stevearc/dressing.nvim",
                 requires = "MunifTanjim/nui.nvim",
@@ -152,11 +150,6 @@ return require("packer").startup(
                 requires = {"kyazdani42/nvim-web-devicons"},
                 config = "require('plugins.bufferline')"
             }
-
-            -- Colorize hex codes
-            -- use {"norcalli/nvim-colorizer.lua", config = "require('plugins.colorizer')"}
-
-            -- use { 'L3MON4D3/LuaSnip', requires = { 'rafamadriz/friendly-snippets' }, after = 'cmp_luasnip' }
 
             -- Autopairs
             use {
