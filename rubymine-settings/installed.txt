@@ -1,0 +1,7 @@
+com.tylerthrailkill.intellij.solarized
+com.arcticicestudio.nord.jetbrains
+com.thvardhan.gradianto
+com.intellij.plugins.vscodekeymap
+org.intellij.plugins.postcss
+com.vermouthx.idea
+IdeaVIM

@@ -1,0 +1,27 @@
+set clipboard+=unnamed
+
+let mapleader = ","
+
+// Better window movement
+nnoremap <silent> <C-h> <C-w>h
+nnoremap <silent> <C-j> <C-w>j
+nnoremap <silent> <C-k> <C-w>k
+nnoremap <silent> <C-l> <C-w>l
+
+// Fix stupid search behavior
+nnoremap n /<CR>
+nnoremap N ?<CR>
+
+// Move selected line / block of text in visual mode
+// Selection is lost after move in IdeaVim
+xnoremap K :move '<-2<CR>gv-gv
+xnoremap J :move '>+1<CR>gv-gv
+
+noremap <leader>t :action GotoFile<CR>
+noremap <leader>f :action Find<CR>
+noremap <leader>a :action FindInPath<CR>
+noremap <leader>g :action Annotate<CR>
+
+// Cycle through tabs with tab and shift tab
+nnoremap <Tab> :action NextTab<CR>
+nnoremap <S-Tab> :action PreviousTab<CR>
