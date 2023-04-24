@@ -10,6 +10,7 @@
   st = status
   cob = checkout -b
   cm = commit
+  lg = log
   amend = commit --amend --no-edit
   cam = !git add -A && git commit -m
   up = !git pull --rebase --prune $@ && git submodule update --init --recursive
