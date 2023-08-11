@@ -53,16 +53,8 @@ keymap("v", "p", '"_dP', silent)
 keymap("n", "n", "/<CR>")
 keymap("n", "N", "?<CR>")
 
-
 -- Remap space to : in normal mode
 keymap("n", "<Space>", ": ", silent)
-
--- Open links under cursor in browser with gx
-if vim.fn.has('macunix') == 1 then
-  keymap("n", "gx", "<cmd>silent execute '!open ' . shellescape('<cWORD>')<CR>", silent)
-else
-  keymap("n", "gx", "<cmd>silent execute '!xdg-open ' . shellescape('<cWORD>')<CR>", silent)
-end
 
 --- need session load behavior back
 keymap("n", "<Leader>ss", ":SessionSave<CR>", silent)

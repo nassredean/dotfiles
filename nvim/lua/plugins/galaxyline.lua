@@ -3,7 +3,6 @@
 
 local gl = require("galaxyline")
 local condition = require("galaxyline.condition")
-local tokyonight_colors = require("tokyonight.colors").setup({})
 
 -- Configuration {{{1
 

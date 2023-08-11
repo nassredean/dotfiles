@@ -1,4 +1,5 @@
 local options = {
+
   clipboard      = "unnamed,unnamedplus",   --- Copy-paste between vim and everything else
   cmdheight      = 2,                       --- Give more space for displaying messages
   completeopt    = "menu,menuone,noselect", --- Better autocompletion
@@ -17,7 +18,6 @@ local options = {
   scrolloff      = 8,                       --- Always keep space when scrolling to bottom/top edge
   shiftwidth     = 2,                       --- Change a number of space characeters inseted for indentation
   showtabline    = 2,                       --- Always show tabs
-  signcolumn     = "yes:2",                 --- Add extra sign column next to line number
   smartcase      = true,                    --- Uses case in search
   smartindent    = true,                    --- Makes indenting smart
   smarttab       = true,                    --- Makes tabbing smarter will realize you have 2 vs 4
@@ -48,7 +48,6 @@ local options = {
 }
 
 local globals = {
-  fillchars                   = "fold:\\ ", --- Fill chars needed for folds
   mapleader                   = ',',        --- Map leader key to SPC
 }
 
