@@ -22,9 +22,17 @@ return require("packer").startup(
             -- Packer can manage itself
             use "wbthomason/packer.nvim"
 
-            -- Needed to load first
             use {"nathom/filetype.nvim"}
             use {"kyazdani42/nvim-web-devicons"}
+
+            -- LSP
+            use {
+                "neovim/nvim-lspconfig",
+                config = "require('plugins.lspconfig')"
+            }
+
+            -- Language Specific
+            use { "https://github.com/ziglang/zig.vim" }
 
             -- Telescope
             use {
@@ -48,14 +56,8 @@ return require("packer").startup(
             use {"nvim-lua/popup.nvim"}
             use {"rcarriga/nvim-notify"}
 
-            -- Nvim Tree / Rooter
+            -- Nvim Tree
             use {"kyazdani42/nvim-tree.lua", config = "require('plugins.tree')"}
-            use {
-                "airblade/vim-rooter",
-                setup = function()
-                    vim.g.rooter_patterns = {".git", "package.json", "_darcs", ".bzr", ".svn", "Makefile"}
-                end
-            }
 
             -- Git
             use "tpope/vim-fugitive"
