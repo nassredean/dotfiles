@@ -31,7 +31,7 @@ keymap("n", "<Leader>g", ":Git blame<CR>", silent)
 -- NvimTree
 keymap("n", "<C-n>", ":NvimTreeToggle<CR>", silent)
 keymap("n", "<Leader>r", ":NvimTreeRefresh<CR>", silent)
-keymap("n", "<Leader>n", ":NvimTreeFindFile<CR>", silent)
+-- keymap("n", "<Leader>n", ":NvimTreeFindFile<CR>", silent)
 
 -- Remove highlights
 keymap("n", "<CR>", ":noh<CR><CR>", silent)
