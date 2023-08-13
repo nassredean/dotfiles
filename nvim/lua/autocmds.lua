@@ -10,6 +10,3 @@ vim.api.nvim_create_autocmd(
     {"BufRead", "BufNewFile"},
     {pattern = {"*.txt", "*.md", "*.tex"}, command = "setlocal spell"}
 )
-
--- Save session on leave
-vim.api.nvim_create_autocmd("VimLeave", {pattern = "*", command = ":SessionSave"})

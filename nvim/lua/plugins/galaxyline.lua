@@ -60,8 +60,8 @@ gl.short_line_list = { 'startify', 'nerdtree', 'term', 'fugitive', 'NvimTree' }
 
 gl.section.left[1] = {
   ViMode = {
-    icon = '',
-    separator = "",
+    icon = " " .. icons.vim,
+    separator = icons.leftSeparator,
     separator_highlight = 'GalaxyViModeReverse',
     highlight = {colors.bg, mode_color()},
     provider = function()
@@ -70,15 +70,14 @@ gl.section.left[1] = {
       local color = mode_color(m)
       vim.api.nvim_command('hi GalaxyViMode guibg=' .. color)
       vim.api.nvim_command('hi GalaxyViModeReverse guifg=' .. color)
-      return ' ' .. mode .. ' '
+      return mode .. ' '
     end,
   }
 }
 
 gl.section.left[2] = {
   CWD = {
-    -- separator = '  ',
-    separator = "",
+    separator = icons.leftSeparator,
     separator_highlight = function()
       return {colors.bg_light, condition.buffer_not_empty() and colors.bg_dim or colors.bg}
     end,
@@ -89,7 +88,6 @@ gl.section.left[2] = {
     end,
   }
 }
-
 
 gl.section.left[3] = {
   FileIcon = {
@@ -108,48 +106,65 @@ gl.section.left[4] = {
     condition = condition.buffer_not_empty,
     highlight = {colors.gray, colors.bg_dim},
     separator_highlight = {colors.bg_dim, colors.bg},
-    separator = "",
+    separator = icons.leftSeparator,
   }
 }
 
 gl.section.left[5] = {
   DiffAdd = {
-    icon = '  ',
+    icon = icons.gitAdd,
     provider = 'DiffAdd',
-    condition = condition.hide_in_width,
-    highlight = {colors.white, colors.bg},
+    condition = condition.check_git_workspace,
+    highlight = {colors.green, colors.bg_light},
   }
 }
 
 gl.section.left[6] = {
   DiffModified = {
-    icon = '  ',
+    icon = icons.gitChange,
     provider = 'DiffModified',
-    condition = condition.hide_in_width,
-    highlight = {colors.gray, colors.bg},
+    condition = condition.check_git_workspace,
+    highlight = {colors.yellow, colors.bg_light},
   }
 }
 
 gl.section.left[7] = {
   DiffRemove = {
-    icon = '  ',
+    icon = icons.gitRemove,
     provider = 'DiffRemove',
-    condition = condition.hide_in_width,
-    highlight = {colors.gray, colors.bg},
+    condition = condition.check_git_workspace,
+    highlight = {colors.red, colors.bg_light},
+    separator = icons.leftSeparator,
+    separator_highlight = {colors.bg_light, colors.bg_dim},
+  }
+}
+
+gl.section.left[8] = {
+  LspIcon = {
+    provider = function()
+      local name = ""
+      if gl.lspclient ~= nil then
+        name = gl.lspclient()
+      end
+      return icons.gears .. name
+    end,
+    highlight = {colors.gray, colors.bg_dim}
+  }
+}
+
+gl.section.left[9] = {
+  ShowLspClient = {
+    provider = function()
+      local client = require('galaxyline.provider_lsp').get_lsp_client()
+      return client .. ' ' -- Adding a space after the client name
+    end,
+    highlight = {colors.gray, colors.bg_dim},
+    separator = icons.leftSeparator,
+    separator_highlight = {colors.bg_dim, colors.bg},
   }
 }
 
 gl.section.right[1] = {
-  FileType = {
-    highlight = {colors.gray, colors.bg},
-    provider = function()
-      local buf = require('galaxyline.provider_buffer')
-      return string.lower(buf.get_buffer_filetype())
-    end,
-  }
-}
-
-gl.section.right[2] = {
   GitBranch = {
     icon = icons.git,
     separator = '  ',
@@ -159,10 +174,10 @@ gl.section.right[2] = {
   }
 }
 
-gl.section.right[3] = {
+gl.section.right[2] = {
   FileLocation = {
-    icon = ' ',
-    separator = ' ',
+    icon = icons.fileLocation,
+    separator = icons.rightSeparator,
     separator_highlight = {colors.bg_dim, colors.bg},
     highlight = {colors.gray, colors.bg_dim},
     provider = function()
@@ -182,4 +197,3 @@ gl.section.right[3] = {
 }
 
 vim.api.nvim_command('hi GalaxyViModeReverse guibg=' .. colors.bg_light)
-

@@ -60,7 +60,8 @@ return require("packer").startup(
             use {"kyazdani42/nvim-tree.lua", config = "require('plugins.tree')"}
 
             -- Git
-            use "tpope/vim-fugitive"
+            use { "lewis6991/gitsigns.nvim", config = "require('gitsigns').setup()" }
+
 
             -- Indentation guides
             use {"lukas-reineke/indent-blankline.nvim", config = "require('plugins.indent')"}

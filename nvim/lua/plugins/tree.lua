@@ -168,4 +168,11 @@ require('nvim-tree').setup {
   }
 }
 
+-- vim.cmd.highlight 'Directory guifg=#79c0ff'
+vim.cmd.highlight 'NvimTreeGitDirty guifg=#ffc777'
+vim.cmd.highlight 'NvimTreeGitNew guifg=#4fd6be'
+vim.cmd.highlight 'NvimTreeGitStaged guifg=#9ece6a'
+-- vim.cmd.highlight 'NvimTreeGitRenamed guifg=#f0883e'
+vim.cmd.highlight 'NvimTreeGitDeleted guifg=#f7768e'
+
 vim.api.nvim_set_keymap("n", "<C-e>", "<cmd>lua require'nvim-tree'.toggle()<CR>", {noremap = true, silent = true})
