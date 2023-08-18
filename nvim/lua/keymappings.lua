@@ -49,6 +49,9 @@ keymap("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", silent)
 -- Don't yank on visual paste
 keymap("v", "p", '"_dP', silent)
 
+-- Trigger completion window
+keymap("i", "<C-Space>", "<C-x><C-o>", silent)
+
 -- Fix stupid search behavior
 keymap("n", "n", "/<CR>")
 keymap("n", "N", "?<CR>")
