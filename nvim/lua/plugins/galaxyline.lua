@@ -60,10 +60,8 @@ gl.short_line_list = { 'startify', 'nerdtree', 'term', 'fugitive', 'NvimTree' }
 
 gl.section.left[1] = {
   ViMode = {
-    icon = " " .. icons.vim,
-    separator = icons.leftSeparator,
-    separator_highlight = 'GalaxyViModeReverse',
     highlight = {colors.bg, mode_color()},
+    icon = " " .. icons.vim,
     provider = function()
       local m = vim.fn.mode() or vim.fn.visualmode()
       local mode = mode_alias(m)
@@ -72,127 +70,140 @@ gl.section.left[1] = {
       vim.api.nvim_command('hi GalaxyViModeReverse guifg=' .. color)
       return mode .. ' '
     end,
+    separator = icons.leftSeparator,
+    separator_highlight = 'GalaxyViModeReverse',
   }
 }
 
 gl.section.left[2] = {
   CWD = {
-    separator = icons.leftSeparator,
-    separator_highlight = function()
-      return {colors.bg_light, condition.buffer_not_empty() and colors.bg_dim or colors.bg}
-    end,
     highlight = {colors.white, colors.bg_light},
     provider = function()
       local dirname = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
       return icons.folderNoBg .. dirname .. ' '
+    end,
+    separator = icons.leftSeparator,
+    separator_highlight = function()
+      return {colors.bg_light, condition.buffer_not_empty() and colors.bg_dim or colors.bg}
     end,
   }
 }
 
 gl.section.left[3] = {
   FileIcon = {
+    condition = condition.buffer_not_empty,
+    highlight = {colors.gray, colors.bg_dim},
     provider = function()
       local file_icon = require('galaxyline.provider_fileinfo').get_file_icon()
       return ' ' .. file_icon -- Adding a space before icon
     end,
-    condition = condition.buffer_not_empty,
-    highlight = {colors.gray, colors.bg_dim},
+    separator_highlight = function()
+      return {colors.bg_light, condition.buffer_not_empty() and colors.bg_light or colors.bg}
+    end,
   }
 }
 
 gl.section.left[4] = {
   FileName = {
-    provider = 'FileName',
     condition = condition.buffer_not_empty,
     highlight = {colors.gray, colors.bg_dim},
-    separator_highlight = {colors.bg_dim, colors.bg},
+    provider = 'FileName',
     separator = icons.leftSeparator,
+    separator_highlight = {colors.bg_dim, colors.bg_light},
   }
 }
 
 gl.section.left[5] = {
-  DiffAdd = {
-    icon = icons.gitAdd,
-    provider = 'DiffAdd',
-    condition = condition.check_git_workspace,
-    highlight = {colors.green, colors.bg_light},
-  }
-}
-
-gl.section.left[6] = {
-  DiffModified = {
-    icon = icons.gitChange,
-    provider = 'DiffModified',
-    condition = condition.check_git_workspace,
-    highlight = {colors.yellow, colors.bg_light},
-  }
-}
-
-gl.section.left[7] = {
-  DiffRemove = {
-    icon = icons.gitRemove,
-    provider = 'DiffRemove',
-    condition = condition.check_git_workspace,
-    highlight = {colors.red, colors.bg_light},
-    separator = icons.leftSeparator,
-    separator_highlight = {colors.bg_light, colors.bg_dim},
-  }
-}
-
-gl.section.left[8] = {
   LspIcon = {
+    condition = condition.buffer_not_empty,
+    highlight = {colors.white, colors.bg_light},
     provider = function()
       local name = ""
       if gl.lspclient ~= nil then
         name = gl.lspclient()
       end
-      return icons.gears .. name
+      return icons.gears .. ' ' .. name
     end,
-    highlight = {colors.gray, colors.bg_dim}
   }
 }
 
-gl.section.left[9] = {
+gl.section.left[6] = {
   ShowLspClient = {
+    condition = condition.buffer_not_empty,
+    highlight = {colors.white, colors.bg_light},
     provider = function()
       local client = require('galaxyline.provider_lsp').get_lsp_client()
       return client .. ' ' -- Adding a space after the client name
     end,
-    highlight = {colors.gray, colors.bg_dim},
     separator = icons.leftSeparator,
-    separator_highlight = {colors.bg_dim, colors.bg},
+    separator_highlight = {colors.bg_light, colors.bg},
   }
 }
 
 gl.section.right[1] = {
   GitBranch = {
-    icon = icons.git,
-    separator = '  ',
     condition = condition.check_git_workspace,
-    highlight = {colors.teal, colors.bg},
-    provider = 'GitBranch',
+    highlight = {colors.teal, colors.bg_dim},
+    icon = icons.git,
+    provider = function()
+      local client = require('galaxyline.provider_vcs').get_git_branch()
+      if client then
+        return client .. ' ' -- Append a space to the branch name
+      else
+        return '' -- Return an empty string if no branch name is found
+      end
+    end,
+    separator = icons.rightSeparator,
+    separator_highlight = {colors.bg_dim, colors.bg},
   }
 }
 
 gl.section.right[2] = {
-  FileLocation = {
-    icon = icons.fileLocation,
+  DiffAdd = {
+    condition = condition.check_git_workspace,
+    highlight = {colors.green, colors.bg_light},
+    icon = icons.gitAdd,
+    provider = 'DiffAdd',
     separator = icons.rightSeparator,
-    separator_highlight = {colors.bg_dim, colors.bg},
+    separator_highlight = {colors.bg_light, colors.bg_dim},
+  }
+}
+
+gl.section.right[3] = {
+  DiffModified = {
+    condition = condition.check_git_workspace,
+    highlight = {colors.yellow, colors.bg_light},
+    icon = icons.gitChange,
+    provider = 'DiffModified',
+  }
+}
+
+gl.section.right[4] = {
+  DiffRemove = {
+    condition = condition.check_git_workspace,
+    highlight = {colors.red, colors.bg_light},
+    icon = icons.gitRemove,
+    provider = 'DiffRemove',
+  }
+}
+
+gl.section.right[5] = {
+  FileLocation = {
     highlight = {colors.gray, colors.bg_dim},
+    icon = icons.fileLocation,
     provider = function()
       local current_line = vim.fn.line('.')
       local total_lines = vim.fn.line('$')
-
       if current_line == 1 then
-        return 'Top'
+        return 'Top '
       elseif current_line == total_lines then
-        return 'Bot'
+        return 'Bot '
       end
-
       local percent, _ = math.modf((current_line / total_lines) * 100)
-      return '' .. percent .. '%'
+      return '' .. percent .. '% '
     end,
+    separator = icons.rightSeparator,
+    separator_highlight = {colors.bg_dim, colors.bg_light},
   }
 }
 
