@@ -40,12 +40,6 @@ keymap("n", "<CR>", ":noh<CR><CR>", silent)
 keymap("n", "<Tab>", ":BufferLineCycleNext<CR>", silent)
 keymap("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", silent)
 
--- Don't yank on delete char
--- keymap("n", "x", '"_x', silent)
--- keymap("n", "X", '"_X', silent)
--- keymap("v", "x", '"_x', silent)
--- keymap("v", "X", '"_X', silent)
-
 -- Don't yank on visual paste
 keymap("v", "p", '"_dP', silent)
 
