@@ -55,22 +55,22 @@ local function mode_color(m)
   return mycolor[m] or colors.bg_light
 end
 
-local function has_git_changes()
-  local file_path = vim.fn.expand('%:p') -- Get the full path to the current file
-
-  if condition.check_git_workspace() ~=true then
-    return false
-  end
-
-  if file_path == '' then
-    return false
-  end
-
-  local handle = io.popen("git diff --name-only " .. file_path)
-  local result = handle:read("*a")
-  handle:close()
-  return result ~= ""
-end
+-- local function has_git_changes()
+--   local file_path = vim.fn.expand('%:p') -- Get the full path to the current file
+--
+--   if condition.check_git_workspace() ~=true then
+--     return false
+--   end
+--
+--   if file_path == '' then
+--     return false
+--   end
+--
+--   local handle = io.popen("git diff --name-only " .. file_path)
+--   local result = handle:read("*a")
+--   handle:close()
+--   return result ~= ""
+-- end
 
 -- disable for these file types
 gl.short_line_list = { 'startify', 'nerdtree', 'term', 'fugitive', 'NvimTree' }
@@ -171,13 +171,14 @@ gl.section.right[1] = {
       end
     end,
     separator = icons.rightSeparator,
-    separator_highlight = function()
-      if has_git_changes() then
-        return {colors.bg_dim, colors.bg_light}
-      else
-        return {colors.bg_dim, colors.bg}
-      end
-    end,
+    separator_highlight = {colors.bg_dim, colors.bg},
+    -- separator_highlight = function()
+    --   if has_git_changes() then
+    --     return {colors.bg_dim, colors.bg_light}
+    --   else
+    --     return {colors.bg_dim, colors.bg}
+    --   end
+    -- end,
   }
 }
 
