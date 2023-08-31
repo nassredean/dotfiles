@@ -22,7 +22,6 @@ return require("packer").startup(
     -- Packer can manage itself
     use "wbthomason/packer.nvim"
 
-    use {"nathom/filetype.nvim"}
     use {"kyazdani42/nvim-web-devicons"}
 
     -- LSP
