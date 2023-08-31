@@ -6,6 +6,8 @@ lspconfig.tsserver.setup{}
 lspconfig.cssls.setup{}
 lspconfig.html.setup{}
 lspconfig.jsonls.setup{}
+lspconfig.ruby_ls.setup{}
+-- lspconfig.typeprof.setup{}
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
