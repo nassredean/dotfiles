@@ -10,11 +10,6 @@ require("telescope").setup(
             "--line-number",
             "--column",
             "--smart-case",
-            "-g !package-lock.json",
-            "-g !*.obj",
-            "-g !*.fbx",
-            "-g !*.glb",
-            "-g !*.gltf"
         },
         layout_config = {
             horizontal = {

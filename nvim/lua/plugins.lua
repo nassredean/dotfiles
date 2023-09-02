@@ -62,8 +62,10 @@ return require("packer").startup(
     use { "lewis6991/gitsigns.nvim", config = "require('gitsigns').setup()" }
 
     --Comments
-    use { "terrortylor/nvim-comment", config = "require('nvim_comment').setup()" }
-
+    use {
+      "terrortylor/nvim-comment",
+      config = "require('plugins.nvim_comment')"
+    }
 
     -- Indentation guides
     use {"lukas-reineke/indent-blankline.nvim", config = "require('plugins.indent')"}
