@@ -2,7 +2,7 @@
 
 vim.opt.list = true
 
-require("indent_blankline").setup {
+require("ibl").setup {
   buftype_exclude = {"terminal", "telescope", "nofile"},
   filetype_exclude = {"help", "packer", "NvimTree", "Trouble", "TelescopePrompt", "Float"},
   show_end_of_line = false,
