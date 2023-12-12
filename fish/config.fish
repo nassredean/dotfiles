@@ -4,7 +4,6 @@ eval (/opt/homebrew/bin/brew shellenv)
 fish_vi_key_bindings
 set fish_greeting
 
-set -gx HOUFILES /Users/$USER/Library/CloudStorage/Dropbox/APPS/Houdini
 set -gx TERM "xterm-256color"
 
 function vim --wraps nvim
@@ -16,12 +15,17 @@ function cat --wraps bat
 end
 
 function python --wraps python
-  python3 $argv
+ python3 $argv
 end
 
 function be
   bundle exec $argv
 end
+
+eval (starship init fish)
+
+fish_add_path /Users/nassredean/workspace/zig/build/stage3/bin
+fish_add_path /Users/nassredean/workspace/zls/zig-out/bin
 
 #
 #   Environment setup for Houdini.
@@ -33,7 +37,7 @@ end
 #
 #   To run the function in quiet mode, specify the "-q" option as an argument.
 #
-set -gx HFS /Applications/Houdini/Houdini19.5.569/Frameworks/Houdini.framework/Versions/Current/Resources
+set -gx HFS /Applications/Houdini/Houdini20.0.547/Frameworks/Houdini.framework/Versions/Current/Resources
 
 #
 #  The following are some handy shortcuts:
@@ -54,16 +58,20 @@ set -gx HSB $HH/sbin
 #
 set -gx TEMP /tmp
 
-set -gx PATH $HB $HSB $PATH
+# set -gx PATH $HB $HSB $PATH
+fish_add_path $HB
+fish_add_path $HSB
 
-set -gx HOUDINI_MAJOR_RELEASE 19
-set -gx HOUDINI_MINOR_RELEASE 5
-set -gx HOUDINI_BUILD_VERSION 569
+set -gx HOUDINI_MAJOR_RELEASE 20
+set -gx HOUDINI_MINOR_RELEASE 0
+set -gx HOUDINI_BUILD_VERSION 547
 set -gx HOUDINI_VERSION "$HOUDINI_MAJOR_RELEASE.$HOUDINI_MINOR_RELEASE.$HOUDINI_BUILD_VERSION"
 
 # Build machine related stuff
-set -gx HOUDINI_BUILD_KERNEL "20.6.0"
-set -gx HOUDINI_BUILD_PLATFORM "macOS 11.5.2"
-set -gx HOUDINI_BUILD_COMPILER "12.0.5.12050022"
+set -gx HOUDINI_BUILD_KERNEL "22.4.0"
+set -gx HOUDINI_BUILD_PLATFORM "macOS 13.3.1"
+set -gx HOUDINI_BUILD_COMPILER "14.0.0.14000029"
 
-eval (starship init fish)
+
+# Created by `pipx` on 2023-11-16 17:03:25
+set PATH $PATH /Users/nassredean/.local/bin
