@@ -6,7 +6,7 @@ lspconfig.tsserver.setup{}
 lspconfig.cssls.setup{}
 lspconfig.html.setup{}
 lspconfig.jsonls.setup{}
-lspconfig.ruby_ls.setup{}
+lspconfig.ruby_lsp.setup{}
 lspconfig.sourcekit.setup{}
 
 -- Global mappings.

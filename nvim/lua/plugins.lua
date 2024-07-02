@@ -1,89 +1,119 @@
-local fn = vim.fn
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-local packer_bootstrap = nil
+local lazy_plugins_path = (vim.fn.stdpath('data') .. '/lazy')
+local lazy_path = (lazy_plugins_path .. '/lazy.nvim')
 
-if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap =
-  fn.system(
-  {
-    "git",
-    "clone",
-    "--depth",
-    "1",
-    "https://github.com/wbthomason/packer.nvim",
-    install_path
-  }
-  )
+if not vim.loop.fs_stat(lazy_path) then
+	vim.fn.system({
+		'git',
+		'clone',
+		'--filter=blob:none',
+		'https://github.com/folke/lazy.nvim.git',
+		'--branch=stable',
+		lazy_path,
+	})
+else
 end
 
-return require("packer").startup(
-{
-  function(use)
-    -- Packer can manage itself
-    use "wbthomason/packer.nvim"
+do
+end
 
-    use {"kyazdani42/nvim-web-devicons"}
+vim.opt.rtp:prepend(lazy_path)
 
-    -- LSP
-    use {
-      "neovim/nvim-lspconfig",
-      config = "require('plugins.lspconfig')"
-    }
+plugins = {
+	'folke/lazy.nvim',
 
-    -- Language Specific
-    use { "https://github.com/ziglang/zig.vim" }
+	'kyazdani42/nvim-web-devicons',
 
-    -- Telescope
-    use {
-      "nvim-telescope/telescope.nvim",
-      requires = {
-        {"nvim-lua/popup.nvim"},
-        {"nvim-lua/plenary.nvim"}
-      },
-      config = "require('plugins.telescope')"
-    }
+	-- LSP
+	{
+		'neovim/nvim-lspconfig',
+		config = function()
+			require('plugins.lspconfig')
+		end,
+	},
 
-    -- Colorscheme
-    use {"folke/tokyonight.nvim"}
+	-- Language Specific
+	{ 'https://github.com/ziglang/zig.vim' },
 
-    -- UI
-    use {
-      "stevearc/dressing.nvim",
-      requires = "MunifTanjim/nui.nvim",
-      config = "require('plugins.dressing')"
-    }
-    use {"nvim-lua/popup.nvim"}
-    use {"rcarriga/nvim-notify"}
+	-- Telescope
+	{
+		'nvim-telescope/telescope.nvim',
+		dependencies = {
+			{ 'nvim-lua/popup.nvim' },
+			{ 'nvim-lua/plenary.nvim' },
+		},
+		config = function()
+			require('plugins.telescope')
+		end,
+	},
 
-    -- Nvim Tree
-    use {"kyazdani42/nvim-tree.lua", config = "require('plugins.tree')"}
+	-- Colorscheme
+	{
+		'folke/tokyonight.nvim',
+		config = function()
+			vim.cmd([[colorscheme tokyonight]])
+		end,
+	},
 
-    -- Git
-    use { "lewis6991/gitsigns.nvim", config = "require('gitsigns').setup()" }
+	-- UI
+	{
+		'stevearc/dressing.nvim',
+		dependencies = { 'MunifTanjim/nui.nvim' },
+		config = function()
+			require('plugins.dressing')
+		end,
+	},
+	{ 'nvim-lua/popup.nvim' },
+	{ 'rcarriga/nvim-notify' },
 
-    --Comments
-    use {
-      "terrortylor/nvim-comment",
-      config = "require('plugins.nvim_comment')"
-    }
+	-- Nvim Tree
+	{
+		'kyazdani42/nvim-tree.lua',
+		config = function()
+			require('plugins.tree')
+		end,
+	},
 
-    -- Indentation guides
-    use {"lukas-reineke/indent-blankline.nvim", config = "require('plugins.indent')"}
+	-- Git
+	{ 'lewis6991/gitsigns.nvim', opts = {} },
 
-    -- Better bufferline
-    use {
-      "akinsho/bufferline.nvim",
-      requires = {"kyazdani42/nvim-web-devicons"},
-      config = "require('plugins.bufferline')"
-    }
+	--Comments
+	{
+		'terrortylor/nvim-comment',
+		config = function()
+			require('plugins.nvim_comment')
+		end,
+	},
 
-    -- Status line
-    use {"ecosse3/galaxyline.nvim", config = "require('plugins.galaxyline')"}
+	-- Indentation guides
+	{
+		'lukas-reineke/indent-blankline.nvim',
+		main = 'ibl',
+		opts = {
+			exclude = {
+				buftypes = { 'terminal', 'telescope', 'nofile' },
+				filetypes = { 'help', 'packer', 'NvimTree', 'Trouble', 'TelescopePrompt', 'Float' },
+			},
+			scope = { show_end = false },
+			whitespace = { remove_blankline_trail = false },
+		},
+	},
 
-    -- Bootstrap packer if needed
-    if packer_bootstrap then
-      require("packer").sync()
-    end
-  end
+	-- Better bufferline
+	{
+		'akinsho/bufferline.nvim',
+		dependencies = { 'kyazdani42/nvim-web-devicons', 'folke/tokyonight.nvim' },
+		config = function()
+			require('plugins.bufferline')
+		end,
+	},
+
+	-- Status line
+	{
+		'ecosse3/galaxyline.nvim',
+		config = function()
+			require('plugins.galaxyline')
+		end,
+	},
 }
-)
+
+require('lazy').setup(plugins, { ui = { border = 'rounded' } })
