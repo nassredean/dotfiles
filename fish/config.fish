@@ -1,6 +1,3 @@
-# Add homebrew to path
-eval (/opt/homebrew/bin/brew shellenv)
-
 fish_vi_key_bindings
 set fish_greeting
 
@@ -30,6 +27,4 @@ function fish_erase_path
   set --erase --universal fish_user_paths[$argv[1]]
 end
 
-fish_add_path /Users/nassredean/.local/bin
-
-eval (starship init fish)
+starship init fish | source

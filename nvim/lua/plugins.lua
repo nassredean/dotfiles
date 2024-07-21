@@ -35,7 +35,7 @@ plugins = {
 	{
 		'nvim-telescope/telescope.nvim',
 		dependencies = {
-			{ 'nvim-lua/plenary.nvim' },
+			 'nvim-lua/plenary.nvim',
 		},
 		config = function()
 			require('plugins.telescope')
@@ -46,7 +46,7 @@ plugins = {
 	{
 		'folke/tokyonight.nvim',
 		config = function()
-			vim.cmd([[colorscheme tokyonight]])
+			vim.cmd([[colorscheme tokyonight-day]])
 		end,
 	},
 
@@ -62,13 +62,19 @@ plugins = {
 	{ 'lewis6991/gitsigns.nvim', opts = {} },
 
 	-- Better bufferline
-	{
-		'akinsho/bufferline.nvim',
-		config = function()
-			require('plugins.bufferline')
-		end,
-	},
+  {
+    'akinsho/bufferline.nvim',
+    version = "*",
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+      'folke/tokyonight.nvim'
+    },
+    config = function()
+      require('plugins.bufferline')
+    end,
+  },
 
+	--
 	-- Status line
 	{
 		'ecosse3/galaxyline.nvim',

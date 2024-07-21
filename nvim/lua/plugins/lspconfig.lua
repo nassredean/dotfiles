@@ -5,9 +5,18 @@ lspconfig.ccls.setup{}
 lspconfig.tsserver.setup{}
 lspconfig.cssls.setup{}
 lspconfig.html.setup{}
-lspconfig.jsonls.setup{}
+-- lspconfig.jsonls.setup{}
 lspconfig.ruby_lsp.setup{}
 lspconfig.sourcekit.setup{}
+lspconfig.rust_analyzer.setup{
+  settings = {
+    ['rust-analyzer'] = {
+      diagnostics = {
+        enable = false;
+      }
+    }
+  }
+}
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
