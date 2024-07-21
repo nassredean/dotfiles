@@ -1,4 +1,3 @@
-require('packer_commands')
 require('settings')
 require('plugins')
 require('keymappings')
