@@ -37,6 +37,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- Buffer local mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local opts = { buffer = ev.buf }
+    vim.keymap.set('i', '<C-p>', '<C-x><C-o>', opts)
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
     vim.keymap.set('n', 'gT', vim.lsp.buf.type_definition, opts)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)

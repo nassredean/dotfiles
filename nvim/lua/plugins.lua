@@ -1,5 +1,6 @@
 local lazy_plugins_path = (vim.fn.stdpath('data') .. '/lazy')
 local lazy_path = (lazy_plugins_path .. '/lazy.nvim')
+local icons = require("icons")
 
 if not vim.loop.fs_stat(lazy_path) then
 	vim.fn.system({
@@ -67,14 +68,13 @@ plugins = {
     version = "*",
     dependencies = {
       'nvim-tree/nvim-web-devicons',
-      'folke/tokyonight.nvim'
+      'folke/tokyonight.nvim' -- Bufferline tries to smartly deduce colors based on theme, so make sure its loaded
     },
     config = function()
       require('plugins.bufferline')
     end,
   },
 
-	--
 	-- Status line
 	{
 		'ecosse3/galaxyline.nvim',
