@@ -17,6 +17,7 @@ brew "glib"
 brew "at-spi2-core"
 brew "automake"
 brew "bat"
+brew "tree"
 brew "bazelisk"
 brew "bison", link: true
 brew "cairo"
