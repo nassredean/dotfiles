@@ -1,0 +1,22 @@
+font-family = FiraCode Nerd Font Mono
+font-style = Regular
+font-size = 16
+font-thicken = true
+
+adjust-underline-position = 40%
+adjust-underline-thickness = -60%
+
+cursor-style = block
+cursor-style-blink = false
+
+shell-integration = fish
+shell-integration-features = no-cursor
+
+keybind = cmd+s=new_split:right
+keybind = cmd+x=new_split:down
+
+
+working-directory = "~/Workspace";
+
+
+theme = catppuccin-latte
