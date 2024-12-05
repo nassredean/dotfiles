@@ -10,13 +10,12 @@ cursor-style = block
 cursor-style-blink = false
 
 shell-integration = fish
-shell-integration-features = no-cursor
 
 keybind = cmd+s=new_split:right
 keybind = cmd+x=new_split:down
 
 
-working-directory = "~/Workspace";
+working-directory = /Users/nassredean/Workspace
 
 
 theme = catppuccin-latte
