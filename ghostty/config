@@ -16,6 +16,6 @@ keybind = cmd+x=new_split:down
 
 
 working-directory = /Users/nassredean/Workspace
-
+window-inherit-working-directory = false
 
 theme = catppuccin-latte
