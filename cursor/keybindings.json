@@ -1,0 +1,118 @@
+// Place your key bindings in this file to override the defaults
+[
+    {
+        "key": "ctrl+k",
+        "command": "-extension.vim_ctrl+k",
+        "when": "editorTextFocus && vim.active && vim.use<C-k> && !inDebugRepl"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "-deleteAllRight",
+        "when": "textInputFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "-deleteLeft",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "-extension.vim_ctrl+h",
+        "when": "editorTextFocus && vim.active && vim.use<C-h> && !inDebugRepl"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.focusLeftGroup"
+    },
+    {
+        "key": "cmd+k cmd+left",
+        "command": "-workbench.action.focusLeftGroup"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.focusRightGroup"
+    },
+    {
+        "key": "cmd+k cmd+right",
+        "command": "-workbench.action.focusRightGroup"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "-workbench.action.chat.newChat",
+        "when": "chatIsEnabled && inChat && chatLocation != 'editing-session'"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "-workbench.action.chat.newEditSession",
+        "when": "chatEditingParticipantRegistered && chatIsEnabled && inChat && chatLocation == 'editing-session'"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "workbench.action.focusAboveGroup"
+    },
+    {
+        "key": "cmd+k cmd+up",
+        "command": "-workbench.action.focusAboveGroup"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "-extension.vim_ctrl+j",
+        "when": "editorTextFocus && vim.active && vim.use<C-j> && !inDebugRepl"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "-editor.action.joinLines",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "workbench.action.focusBelowGroup"
+    },
+    {
+        "key": "cmd+k cmd+down",
+        "command": "-workbench.action.focusBelowGroup"
+    },
+    {
+        "key": ", a",
+        "command": "workbench.action.findInFiles",
+        "when": "vim.mode == 'Normal'"
+    },
+    {
+        "key": ", v",
+        "command": "markdown.showPreviewToSide",
+        "when": "vim.mode == 'Normal'"
+    },
+    {
+        "key": ", b",
+        "command": "editor.debug.action.toggleBreakpoint",
+        "when": "vim.mode == 'Normal'"
+    },
+    {
+        "key": "cmd+i",
+        "command": "composerMode.agent"
+    },{
+        "key": ", x",
+        "command": "workbench.action.splitEditorRight",
+        "when": "vim.mode == 'Normal'"
+    },
+    {
+        "key": ", s",
+        "command": "workbench.action.splitEditorDown",
+        "when": "vim.mode == 'Normal'"
+    },
+    {
+        "key": ", t",
+        "command": "workbench.action.quickOpen",
+        "when": "vim.mode == 'Normal'"
+    },
+    {
+        "key": ", l",
+        "command": "actions.find",
+        "when": "editorHasSelection && vim.mode == 'Normal'"
+    },
+    {
+        "key": ", f",
+        "command": "actions.find",
+        "when": "editorTextFocus && vim.mode == 'Normal'"
+    }
+]

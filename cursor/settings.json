@@ -1,0 +1,18 @@
+{
+    "editor.fontFamily": "'FiraCode Nerd Font Mono'",
+    "workbench.colorTheme": "Catppuccin Latte",
+    "vim.useSystemClipboard": true,
+    "window.zoomLevel": 1,
+    "editor.fontSize": 14,
+    "debug.console.fontSize": 14,
+    "terminal.integrated.fontSize": 14,
+    "editor.minimap.enabled": false,
+    "window.openFilesInNewWindow": "on",
+    "vim.leader": ",",
+    "files.trimTrailingWhitespace": true,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "remote.autoForwardPortsSource": "hybrid",
+    "terminal.integrated.scrollback": 1000000,
+    "workbench.editor.enablePreview": false
+}
