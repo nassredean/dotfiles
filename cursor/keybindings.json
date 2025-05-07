@@ -65,54 +65,43 @@
         "when": "editorTextFocus && !editorReadonly"
     },
     {
-        "key": "ctrl+j",
-        "command": "workbench.action.focusBelowGroup"
-    },
-    {
-        "key": "cmd+k cmd+down",
-        "command": "-workbench.action.focusBelowGroup"
-    },
-    {
         "key": ", a",
         "command": "workbench.action.findInFiles",
-        "when": "vim.mode == 'Normal'"
+        "when": "editorTextFocus && vim.active && vim.mode == 'Normal' && !inDebugRepl"
     },
     {
         "key": ", v",
         "command": "markdown.showPreviewToSide",
-        "when": "vim.mode == 'Normal'"
+        "when": "editorTextFocus && vim.active && vim.mode == 'Normal' && !inDebugRepl"
     },
     {
         "key": ", b",
         "command": "editor.debug.action.toggleBreakpoint",
-        "when": "vim.mode == 'Normal'"
+        "when": "editorTextFocus && vim.active && vim.mode == 'Normal' && !inDebugRepl"
     },
     {
-        "key": "cmd+i",
-        "command": "composerMode.agent"
-    },{
         "key": ", x",
         "command": "workbench.action.splitEditorRight",
-        "when": "vim.mode == 'Normal'"
+        "when": "editorTextFocus && vim.active && vim.mode == 'Normal' && !inDebugRepl"
     },
     {
         "key": ", s",
         "command": "workbench.action.splitEditorDown",
-        "when": "vim.mode == 'Normal'"
+        "when": "editorTextFocus && vim.active && vim.mode == 'Normal' && !inDebugRepl"
     },
     {
         "key": ", t",
         "command": "workbench.action.quickOpen",
-        "when": "vim.mode == 'Normal'"
+        "when": "editorTextFocus && vim.active && vim.mode == 'Normal' && !inDebugRepl"
     },
     {
         "key": ", l",
         "command": "actions.find",
-        "when": "editorHasSelection && vim.mode == 'Normal'"
+        "when": "editorHasSelection && editorTextFocus && vim.active && vim.mode == 'Normal' && !inDebugRepl"
     },
     {
         "key": ", f",
         "command": "actions.find",
-        "when": "editorTextFocus && vim.mode == 'Normal'"
+        "when": "editorTextFocus && vim.active && vim.mode == 'Normal' && !inDebugRepl"
     }
 ]
