@@ -3,6 +3,10 @@ set fish_greeting
 
 set -gx TERM "xterm-256color"
 
+fish_add_path /opt/homebrew/bin
+fish_add_path /Users/dean/.local/bin
+fish_add_path /usr/local/bin
+
 function cat --wraps bat
   bat $argv
 end
