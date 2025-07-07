@@ -1,6 +1,6 @@
 font-family = FiraCode Nerd Font Mono
 font-style = Regular
-font-size = 16
+font-size = 14
 font-thicken = true
 
 adjust-underline-position = 40%
@@ -18,4 +18,4 @@ keybind = cmd+x=new_split:down
 working-directory = /Users/nassredean/Workspace
 window-inherit-working-directory = false
 
-theme = catppuccin-latte
+theme = nassredean
