@@ -18,4 +18,7 @@ keybind = cmd+x=new_split:down
 working-directory = /Users/nassredean/Workspace
 window-inherit-working-directory = false
 
+copy-on-select = clipboard
+
 theme = nassredean
+
