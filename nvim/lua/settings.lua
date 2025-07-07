@@ -29,7 +29,6 @@ local options = {
   undofile       = true,                    --- Sets undo to file
   updatetime     = 100,                     --- Faster completion
   viminfo        = "'1000",                 --- Increase the size of file history
-  wildignore     = "*node_modules/**",      --- Don't search inside Node.js modules (works for gutentag)
   wrap           = false,                   --- Display long lines as just one line
   writebackup    = false,                   --- Not needed
 

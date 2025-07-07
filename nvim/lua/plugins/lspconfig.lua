@@ -17,6 +17,7 @@ lspconfig.rust_analyzer.setup{
     }
   }
 }
+require'lspconfig'.sourcekit.setup{}
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions

@@ -43,13 +43,19 @@ plugins = {
 		end,
 	},
 
-	-- Colorscheme
-	{
-		'folke/tokyonight.nvim',
-		config = function()
-			vim.cmd([[colorscheme tokyonight-day]])
-		end,
-	},
+  {
+    'projekt0n/github-nvim-theme',
+    name = 'github-theme',
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other start plugins
+    config = function()
+      require('github-theme').setup({
+        -- ...
+      })
+
+      vim.cmd('colorscheme github_light_default')
+    end,
+  },
 
 	-- Nvim Tree
 	{
@@ -67,21 +73,15 @@ plugins = {
     'akinsho/bufferline.nvim',
     version = "*",
     dependencies = {
-      'nvim-tree/nvim-web-devicons',
-      'folke/tokyonight.nvim' -- Bufferline tries to smartly deduce colors based on theme, so make sure its loaded
+      'nvim-tree/nvim-web-devicons'
     },
     config = function()
       require('plugins.bufferline')
     end,
   },
 
-	-- Status line
-	{
-		'ecosse3/galaxyline.nvim',
-		config = function()
-			require('plugins.galaxyline')
-		end,
-	},
+  -- Language specific
+  'tikhomirov/vim-glsl'
 }
 
 require('lazy').setup(plugins, { ui = { border = 'rounded' } })
