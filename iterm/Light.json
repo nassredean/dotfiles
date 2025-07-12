@@ -160,11 +160,11 @@
   "Use Bright Bold" : true,
   "Has Hotkey" : false,
   "Cursor Text Color" : {
-    "Red Component" : 0.035294117647058823,
-    "Color Space" : "sRGB",
-    "Blue Component" : 0.85490196078431369,
+    "Red Component" : 1,
+    "Color Space" : "P3",
+    "Blue Component" : 1,
     "Alpha Component" : 1,
-    "Green Component" : 0.41176470588235292
+    "Green Component" : 1
   },
   "Default Bookmark" : "No",
   "Cursor Color" : {
