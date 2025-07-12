@@ -38,9 +38,6 @@ plugins = {
 		dependencies = {
 			 'nvim-lua/plenary.nvim',
 		},
-		config = function()
-			require('plugins.telescope')
-		end,
 	},
 
   {
@@ -79,9 +76,6 @@ plugins = {
       require('plugins.bufferline')
     end,
   },
-
-  -- Language specific
-  'tikhomirov/vim-glsl'
 }
 
 require('lazy').setup(plugins, { ui = { border = 'rounded' } })

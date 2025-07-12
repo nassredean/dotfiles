@@ -1,13 +1,5 @@
 -- Setup language servers.
 local lspconfig = require('lspconfig')
-lspconfig.zls.setup {}
-lspconfig.ccls.setup{}
-lspconfig.tsserver.setup{}
-lspconfig.cssls.setup{}
-lspconfig.html.setup{}
--- lspconfig.jsonls.setup{}
-lspconfig.ruby_lsp.setup{}
-lspconfig.sourcekit.setup{}
 lspconfig.rust_analyzer.setup{
   settings = {
     ['rust-analyzer'] = {
@@ -17,7 +9,6 @@ lspconfig.rust_analyzer.setup{
     }
   }
 }
-require'lspconfig'.sourcekit.setup{}
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
