@@ -23,10 +23,22 @@ keymap("i", "<C-s>", "<ESC> :w<CR>", silent)
 keymap("n", "<Leader>t", "<CMD>lua require('telescope.builtin').find_files()<CR>")
 keymap("n", "<Leader>a", "<CMD>lua require('telescope.builtin').live_grep()<CR>")
 keymap("n", "<Leader>b", "<CMD>lua require('telescope.builtin').buffers()<CR>")
--- keymap("n", "<Leader>h", "<CMD>lua require('telescope.builtin').help_tags()<CR>")
+keymap("n", "<Leader>s", "<CMD>lua require('telescope.builtin').search_history()<CR>")
+keymap("n", "<Leader>r", "<CMD>lua require('telescope.builtin').command_history()<CR>")
+keymap("n", "<Leader>y", "<CMD>lua require('telescope.builtin').registers()<CR>")
+-- Telescope - LSP
+keymap("n", "<Leader>lr", "<CMD>lua require('telescope.builtin').lsp_references()<CR>")
+keymap("n", "<Leader>ld", "<CMD>lua require('telescope.builtin').lsp_definitions()<CR>")
+keymap("n", "<Leader>lm", "<CMD>lua require('telescope.builtin').lsp_implementations()<CR>")
+keymap("n", "<Leader>lt", "<CMD>lua require('telescope.builtin').diagnostics({ bufnr=0 })<CR>")
+-- Telescope - Git
+keymap("n", "<Leader>gc", "<CMD>lua require('telescope.builtin').git_commits()<CR>")
+keymap("n", "<Leader>gb", "<CMD>lua require('telescope.builtin').git_bcommits()<CR>")
+keymap("n", "<Leader>gs", "<CMD>lua require('telescope.builtin').git_status()<CR>")
+keymap("n", "<Leader>gr", "<CMD>lua require('telescope.builtin').git_branches()<CR>")
 
 -- Git
-keymap("n", "<Leader>g", ":Git blame<CR>", silent)
+keymap("n", "<Leader>g", ":Gitsigns blame<CR>", silent)
 
 -- NvimTree
 keymap("n", "<C-n>", ":NvimTreeToggle<CR>", silent)
