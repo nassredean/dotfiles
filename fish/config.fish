@@ -50,27 +50,27 @@ function fish_prompt --description 'Compact prompt with hh:mm:ss & git status'
     set -l red    (set_color brred)
     set -l normal (set_color normal)
 
-    # pieces
-    set -l ts  (date '+%H:%M:%S')          # hh:mm:ss
-    set -l dir (prompt_pwd --dir-length=1)  # ~/w/dotfiles or ~/p/w/api, etc.
+    # segments
+    set -l ts  (date '+%H:%M:%S')
+    set -l dir (prompt_pwd --dir-length=1)
 
+    # git: prepend one space only if we’re inside a repo
+    set -l git_segment ''
     set -l git (__fish_git_prompt)
     if test -n "$git"
-        set git " $git"                    # add one leading space only if inside a repo
+        set git_segment " $git"
     end
 
-    set -l glyph (test (id -u) -eq 0; and echo '#'; or echo '➜')
     set -l exit  (test $last_status -eq 0; and echo "$green✔$normal"; or echo "$red✗$normal")
+    set -l glyph (test (id -u) -eq 0; and echo '#'; or echo '➜')
 
-    # render – no stray spaces or newlines
+    #            colour [time]   space colour dir reset git    space exit space glyph space
     printf '%s[%s] %s%s%s%s %s %s ' \
         $yellow $ts \
-        $cyan $dir $normal \
-        $git \
+        $cyan   $dir $normal "$git_segment" \
         $exit \
         $glyph
 end
-
 
 fzf --fish | source
 
