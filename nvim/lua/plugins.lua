@@ -32,6 +32,49 @@ plugins = {
 		end,
 	},
 
+  -- Treesitter
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function ()
+      local configs = require("nvim-treesitter.configs")
+
+      configs.setup({
+          ensure_installed = {
+            "bash",
+            "c",
+            "csv",
+            "dockerfile",
+            "diff",
+            "fish",
+            "git_config",
+            "git_rebase",
+            "gitattributes",
+            "gitignore",
+            "glsl",
+            "html",
+            "javascript",
+            "jq",
+            "json",
+            "lua",
+            "python",
+            "query",
+            "regex",
+            "ruby",
+            "rust",
+            "sql",
+            "swift",
+            "typescript",
+            "vim",
+            "vimdoc",
+          },
+          sync_install = false,
+          highlight = { enable = true },
+          indent = { enable = true },
+        })
+    end
+ },
+
 	-- Telescope
 	{
 		'nvim-telescope/telescope.nvim',
@@ -77,7 +120,13 @@ plugins = {
       require('plugins.bufferline')
     end,
   },
+
+  {
+      'numToStr/Comment.nvim',
+      opts = {
+          -- add any options here
+      }
+  }
 }
 
 require('lazy').setup(plugins, { ui = { border = 'rounded' } })
-

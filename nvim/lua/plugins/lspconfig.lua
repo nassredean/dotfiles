@@ -1,16 +1,9 @@
 -- Setup language servers.
-local lspconfig = require('lspconfig')
-lspconfig.rust_analyzer.setup{
-  settings = {
-    ['rust-analyzer'] = {
-      diagnostics = {
-        enable = false;
-      }
-    }
-  }
-}
+vim.lsp.config('pyright', {
+  cmd = { 'uv', 'run', 'pyrefly', 'lsp' },
+})
+vim.lsp.enable('pyright')
 
--- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
