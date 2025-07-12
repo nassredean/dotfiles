@@ -60,7 +60,7 @@ plugins = {
 		config = function()
 			require('plugins.tree')
 		end,
-	},
+  },
 
 	-- Git
 	{ 'lewis6991/gitsigns.nvim', opts = {} },
@@ -70,6 +70,7 @@ plugins = {
     'akinsho/bufferline.nvim',
     version = "*",
     dependencies = {
+      'projekt0n/github-nvim-theme',
       'nvim-tree/nvim-web-devicons'
     },
     config = function()
@@ -79,3 +80,4 @@ plugins = {
 }
 
 require('lazy').setup(plugins, { ui = { border = 'rounded' } })
+

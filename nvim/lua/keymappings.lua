@@ -23,7 +23,7 @@ keymap("i", "<C-s>", "<ESC> :w<CR>", silent)
 keymap("n", "<Leader>t", "<CMD>lua require('telescope.builtin').find_files()<CR>")
 keymap("n", "<Leader>a", "<CMD>lua require('telescope.builtin').live_grep()<CR>")
 keymap("n", "<Leader>b", "<CMD>lua require('telescope.builtin').buffers()<CR>")
-keymap("n", "<Leader>h", "<CMD>lua require('telescope.builtin').help_tags()<CR>")
+-- keymap("n", "<Leader>h", "<CMD>lua require('telescope.builtin').help_tags()<CR>")
 
 -- Git
 keymap("n", "<Leader>g", ":Git blame<CR>", silent)
@@ -54,6 +54,6 @@ keymap("n", "N", "?<CR>")
 keymap("n", "<Space>", ": ", silent)
 
 --- need session load behavior back
-keymap("n", "<Leader>ss", ":SessionSave<CR>", silent)
-keymap("n", "<Leader>sl", ":SessionLoad<CR>", silent)
+-- keymap("n", "<Leader>ss", ":SessionSave<CR>", silent)
+-- keymap("n", "<Leader>sl", ":SessionLoad<CR>", silent)
 
