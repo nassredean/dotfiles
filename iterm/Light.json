@@ -12,7 +12,7 @@
   "Ansi 11 Color" : {
     "Red Component" : 0.38823529411764707,
     "Color Space" : "sRGB",
-    "Blue Component" : 0.0039215686274509803,
+    "Blue Component" : 0.0039215686274509795,
     "Alpha Component" : 1,
     "Green Component" : 0.23529411764705882
   },
@@ -34,6 +34,7 @@
     "Alpha Component" : 1,
     "Green Component" : 0.13725490196078433
   },
+  "Show Mark Indicators" : false,
   "Mouse Reporting" : true,
   "Cursor Boost" : 0,
   "Ansi 4 Color" : {
@@ -56,6 +57,7 @@
   "Scrollback With Status Bar" : false,
   "Scrollback Lines" : 0,
   "Scrollback in Alternate Screen" : false,
+  "Show Offscreen Command line" : false,
   "Enable Triggers in Interactive Apps" : false,
   "Brighten Bold Text" : true,
   "Flashing Bell" : false,
@@ -145,7 +147,7 @@
     "Color Space" : "sRGB",
     "Blue Component" : 0.14901960784313725,
     "Alpha Component" : 1,
-    "Green Component" : 0.054901960784313725
+    "Green Component" : 0.054901960784313732
   },
   "Use Bold Font" : true,
   "Silence Bell" : true,
@@ -215,6 +217,7 @@
   },
   "Ambiguous Double Width" : false,
   "Blur Radius" : 0.10000000000000001,
+  "Treat Option as Alt" : true,
   "Ansi 0 Color" : {
     "Red Component" : 0.14117647058823529,
     "Color Space" : "sRGB",
@@ -232,11 +235,12 @@
     "Alpha Component" : 1,
     "Green Component" : 0.46666666666666667
   },
+  "Place Prompt at First Column" : false,
   "Space" : 0,
   "Command" : "",
   "Terminal Type" : "xterm-256color",
   "Horizontal Spacing" : 0.90000000000000002,
-  "Option Key Sends" : 0,
+  "Option Key Sends" : 2,
   "Only The Default BG Color Uses Transparency" : false,
   "Ansi 15 Color" : {
     "Red Component" : 0.5490196078431373,
@@ -274,6 +278,7 @@
   },
   "Columns" : 80,
   "Visual Bell" : false,
+  "Use Selected Text Color" : true,
   "Custom Directory" : "No",
   "Ansi 5 Color" : {
     "Red Component" : 0.50980392156862742,
