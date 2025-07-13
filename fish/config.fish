@@ -2,6 +2,11 @@ fish_vi_key_bindings
 set fish_greeting
 
 set -gx TERM "xterm-256color"
+set -gx EDITOR "nvim"
+set -gx FZF_CTRL_T_COMMAND "fd --type f --strip-cwd-prefix" 
+set -gx FZF_FIND_FILE_COMMAND "fd --type f --strip-cwd-prefix"
+set -gx FZF_LEGACY_KEYBINDINGS 0
+set -gx FZF_COMPLETE 1 
 
 fish_add_path /opt/homebrew/bin
 fish_add_path /Users/dean/.local/bin
@@ -70,7 +75,7 @@ function fish_prompt --description 'Compact prompt with hh:mm:ss & git status'
         $cyan   $dir $normal "$git_segment" \
         $exit \
         $glyph
-end
+end 
 
 fzf --fish | source
 
