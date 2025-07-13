@@ -9,7 +9,7 @@ set -gx FZF_LEGACY_KEYBINDINGS 0
 set -gx FZF_COMPLETE 1 
 
 fish_add_path /opt/homebrew/bin
-fish_add_path /Users/dean/.local/bin
+fish_add_path {$HOME}/.local/bin
 fish_add_path /usr/local/bin
 
 function cat --wraps bat

@@ -14,11 +14,11 @@ shell-integration = fish
 keybind = cmd+s=new_split:right
 keybind = cmd+x=new_split:down
 
-
-working-directory = /Users/nassredean/Workspace
 window-inherit-working-directory = false
 
 copy-on-select = clipboard
 
 theme = nassredean
+
+working-directory = /Users/nassredean/Workspace
 
