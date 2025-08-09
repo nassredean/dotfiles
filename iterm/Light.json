@@ -12,7 +12,7 @@
   "Ansi 11 Color" : {
     "Red Component" : 0.38823529411764707,
     "Color Space" : "sRGB",
-    "Blue Component" : 0.0039215686274509795,
+    "Blue Component" : 0.0039215686274509786,
     "Alpha Component" : 1,
     "Green Component" : 0.23529411764705882
   },
@@ -46,6 +46,7 @@
   },
   "Non-ASCII Anti Aliased" : true,
   "Sync Title" : false,
+  "Disable Window Resizing" : true,
   "Description" : "Default",
   "Close Sessions On End" : true,
   "Jobs to Ignore" : [
