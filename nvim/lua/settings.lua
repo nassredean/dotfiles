@@ -1,13 +1,9 @@
 local options = {
   clipboard      = "unnamed,unnamedplus",   --- Copy-paste between vim and everything else
-  cmdheight      = 2,                       --- Give more space for displaying messages
   completeopt    = "menu,menuone,noselect", --- Better autocompletion
   cursorline     = true,                    --- Highlight of current line
   emoji          = false,                   --- Fix emoji display
-  expandtab      = true,                    --- Use spaces instead of tabs
   foldlevelstart = 99,                      --- Expand all folds by default
-  foldtext       = "CustomFold()",          --- Emit custom function for foldtext
-  ignorecase     = true,                    --- Needed for smartcase
   laststatus     = 3,                       --- Have a global statusline at the bottom instead of one for each window
   lazyredraw     = true,                    --- Makes macros faster & prevent errors in complicated mappings
   mouse          = "a",                     --- Enable mouse
@@ -15,44 +11,33 @@ local options = {
   pumheight      = 10,                      --- Max num of items in completion menu
   relativenumber = true,                    --- Enables relative number
   scrolloff      = 8,                       --- Always keep space when scrolling to bottom/top edge
-  shiftwidth     = 2,                       --- Change a number of space characeters inseted for indentation
   showtabline    = 2,                       --- Always show tabs
+  ignorecase     = true,                    --- Needed for smartcase
   smartcase      = true,                    --- Uses case in search
-  smartindent    = true,                    --- Makes indenting smart
-  smarttab       = true,                    --- Makes tabbing smarter will realize you have 2 vs 4
-  softtabstop    = 2,                       --- Insert 2 spaces for a tab
   splitright     = true,                    --- Vertical splits will automatically be to the right
-  swapfile       = false,                   --- Swap not needed
-  tabstop        = 2,                       --- Insert 2 spaces for a tab
-  termguicolors  = true,                    --- Correct terminal colors
-  timeoutlen     = 300,                     --- Faster completion
+  expandtab      = true,                    --- Use spaces instead of tabs
+  -- smartindent    = true,                    --- Provides simple automatic indentation, primarily for code-like files. 
+  -- smarttab       = true,                    --- Smarter alignment when writing code: tabs respect indentation rules when at the start of the line. On by default.
+  -- autoindent     = true,                    --- Copies the indent from the previous line when you press Enter. On by default
+  -- softtabstop    = 2,                       --- Controls how many spaces a Tab key press inserts in Insert mode
+  -- tabstop        = 2,                       --- Controls how many spaces a literal tab character (\t) displays as
+  -- shiftwidth     = 2,                       --- Controls how many spaces are inserted when indenting
+  timeoutlen     = 300,                     --- How long (in milliseconds) Neovim waits after a key sequence for the next key to complete a mapped sequence. 
+  updatetime     = 100,                     --- How long (in milliseconds) Neovim waits after you stop typing or moving cursor before triggering CursorHold event
   undofile       = true,                    --- Sets undo to file
-  updatetime     = 100,                     --- Faster completion
-  viminfo        = "'1000",                 --- Increase the size of file history
   wrap           = false,                   --- Display long lines as just one line
+  swapfile       = false,                   --- Swap not needed
   writebackup    = false,                   --- Not needed
-
-  -- Neovim defaults
-  autoindent     = true,                    --- Good auto indent
-  backspace      = "indent,eol,start",      --- Making sure backspace works
-  backup         = false,                   --- Recommended by coc
-  conceallevel   = 0,                       --- Show `` in markdown files
-  encoding       = "utf-8",                 --- The encoding displayed
-  errorbells     = false,                   --- Disables sound effect for errors
-  fileencoding   = "utf-8",                 --- The encoding written to file
-  incsearch      = true,                    --- Start searching before pressing enter
-  showmode       = false,                   --- Don't show things like -- INSERT -- anymore
-  backupcopy     = "yes",
-}
-
-local globals = {
-  mapleader                   = ',',        --- Map leader key to SPC
 }
 
 vim.opt.shortmess:append('c');
 vim.opt.formatoptions:remove('c');
 vim.opt.formatoptions:remove('r');
 vim.opt.formatoptions:remove('o');
+
+local globals = {
+  mapleader = ',',
+}
 
 for k, v in pairs(options) do
   vim.opt[k] = v

@@ -1,8 +1,10 @@
--- Setup language servers.
-vim.lsp.config('pyright', {
+vim.lsp.config('pyrefly', {
   cmd = { 'uv', 'run', 'pyrefly', 'lsp' },
 })
-vim.lsp.enable('pyright')
+vim.lsp.enable('pyrefly') -- python (requires uv + pyrefly installed)
+vim.lsp.enable('rust_analyzer') -- rust (requires rust-analyzer installed)
+vim.lsp.enable('ts_ls') -- typescript (requires typescript-language-server/typescript-language-server)
+vim.lsp.enable('lua_ls') -- lua (requires LuaLS/lua-language-server)
 
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
@@ -22,15 +24,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- Buffer local mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local opts = { buffer = ev.buf }
-    vim.keymap.set('i', '<C-p>', '<C-x><C-o>', opts)
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+    vim.keymap.set('n', 'gD', vim.lsp.buf.definition, opts)
+    -- vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
     vim.keymap.set('n', 'gT', vim.lsp.buf.type_definition, opts)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    -- vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
     vim.keymap.set('n', 'L', vim.lsp.buf.signature_help, opts)
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
     vim.keymap.set('n', 'rn', vim.lsp.buf.rename, opts)
-    -- vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
+    vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
     vim.keymap.set('n', '<space>f', function()
       vim.lsp.buf.format { async = true }
