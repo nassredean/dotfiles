@@ -97,15 +97,16 @@
   "Unlimited Scrollback" : true,
   "Custom Command" : "No",
   "Keyboard Map" : {
+    "0x6a-0x180000-0x26" : {
+      "Version" : 2,
+      "Apply Mode" : 0,
+      "Action" : 21,
+      "Text" : "",
+      "Escaping" : 2
+    },
     "0x6c-0x100000-0x25" : {
       "Version" : 1,
       "Action" : 39,
-      "Text" : "",
-      "Label" : ""
-    },
-    "0x68-0x100000-0x4" : {
-      "Version" : 1,
-      "Action" : 32,
       "Text" : "",
       "Label" : ""
     },
@@ -121,6 +122,33 @@
       "Apply Mode" : 0,
       "Action" : 28,
       "Text" : "AC339BF6-DB0E-4CC5-B87A-D11CD23C4CF2",
+      "Escaping" : 2
+    },
+    "0x68-0x100000-0x4" : {
+      "Version" : 1,
+      "Action" : 32,
+      "Text" : "",
+      "Label" : ""
+    },
+    "0x6b-0x180000-0x28" : {
+      "Version" : 2,
+      "Apply Mode" : 0,
+      "Action" : 20,
+      "Text" : "",
+      "Escaping" : 2
+    },
+    "0x68-0x180000-0x4" : {
+      "Version" : 2,
+      "Apply Mode" : 0,
+      "Action" : 18,
+      "Text" : "",
+      "Escaping" : 2
+    },
+    "0x6c-0x180000-0x25" : {
+      "Version" : 2,
+      "Apply Mode" : 0,
+      "Action" : 19,
+      "Text" : "",
       "Escaping" : 2
     }
   },
