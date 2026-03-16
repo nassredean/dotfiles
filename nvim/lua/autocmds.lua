@@ -7,3 +7,11 @@ vim.api.nvim_create_autocmd(
   {"BufRead", "BufNewFile"},
   {pattern = {"*.txt", "*.md", "*.tex"}, command = "setlocal spell"}
 )
+
+-- Autoformat xml on open
+vim.api.nvim_create_autocmd("BufReadPost", {
+  pattern = "*.xml",
+  callback = function()
+    vim.cmd("%!xmllint --format -")
+  end,
+})

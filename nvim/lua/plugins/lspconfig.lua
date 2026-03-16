@@ -1,10 +1,12 @@
-vim.lsp.config('pyrefly', {
-  cmd = { 'uv', 'run', 'pyrefly', 'lsp' },
-})
-vim.lsp.enable('pyrefly') -- python (requires uv + pyrefly installed)
+-- vim.lsp.config('pyrefly', {
+--   cmd = { 'uv', 'run', 'pyrefly', 'lsp' },
+-- })
+-- vim.lsp.enable('pyrefly') -- python (requires uv + pyrefly installed)
 vim.lsp.enable('rust_analyzer') -- rust (requires rust-analyzer installed)
 vim.lsp.enable('ts_ls') -- typescript (requires typescript-language-server/typescript-language-server)
 vim.lsp.enable('lua_ls') -- lua (requires LuaLS/lua-language-server)
+vim.lsp.enable('gopls') -- golang
+vim.lsp.enable('render-markdown')
 
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)

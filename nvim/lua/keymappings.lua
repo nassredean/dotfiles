@@ -71,14 +71,20 @@ keymap("n", "<Space>", ": ", silent)
 
 -- Treewalker
 -- movement (Alt/Option + key)
-vim.keymap.set({ 'n', 'v' }, '<A-k>', '<cmd>Treewalker Up<cr>', { silent = true })
-vim.keymap.set({ 'n', 'v' }, '<A-j>', '<cmd>Treewalker Down<cr>', { silent = true })
-vim.keymap.set({ 'n', 'v' }, '<A-h>', '<cmd>Treewalker Left<cr>', { silent = true })
-vim.keymap.set({ 'n', 'v' }, '<A-l>', '<cmd>Treewalker Right<cr>', { silent = true })
+keymap({ 'n', 'v' }, '<A-k>', '<cmd>Treewalker Up<cr>', { silent = true })
+keymap({ 'n', 'v' }, '<A-j>', '<cmd>Treewalker Down<cr>', { silent = true })
+keymap({ 'n', 'v' }, '<A-h>', '<cmd>Treewalker Left<cr>', { silent = true })
+keymap({ 'n', 'v' }, '<A-l>', '<cmd>Treewalker Right<cr>', { silent = true })
 
 -- swapping (Alt/Option + Shift + key)
-vim.keymap.set('n', '<A-S-k>', '<cmd>Treewalker SwapUp<cr>', { silent = true })
-vim.keymap.set('n', '<A-S-j>', '<cmd>Treewalker SwapDown<cr>', { silent = true })
-vim.keymap.set('n', '<A-S-h>', '<cmd>Treewalker SwapLeft<cr>', { silent = true })
-vim.keymap.set('n', '<A-S-l>', '<cmd>Treewalker SwapRight<cr>', { silent = true })
+keymap('n', '<A-S-k>', '<cmd>Treewalker SwapUp<cr>', { silent = true })
+keymap('n', '<A-S-j>', '<cmd>Treewalker SwapDown<cr>', { silent = true })
+keymap('n', '<A-S-h>', '<cmd>Treewalker SwapLeft<cr>', { silent = true })
+keymap('n', '<A-S-l>', '<cmd>Treewalker SwapRight<cr>', { silent = true })
 
+-- copy path
+keymap('n', '<leader>cp', function()
+  local path = vim.fn.expand('%:p') -- full path; use '%' for relative, '%:t' for filename only
+  vim.fn.setreg('+', path)
+  vim.notify('Copied: ' .. path)
+end, { desc = 'Copy file path' })
