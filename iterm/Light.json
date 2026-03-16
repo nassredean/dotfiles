@@ -69,7 +69,7 @@
     "Alpha Component" : 0.25,
     "Green Component" : 0.92047786712646484
   },
-  "BM Growl" : false,
+  "BM Growl" : true,
   "Ansi 3 Color" : {
     "Red Component" : 0.30196078431372547,
     "Color Space" : "sRGB",
@@ -95,6 +95,7 @@
     "Green Component" : 0.13725490196078433
   },
   "Unlimited Scrollback" : true,
+  "Allow Title Setting" : true,
   "Custom Command" : "No",
   "Keyboard Map" : {
     "0x6a-0x180000-0x26" : {
@@ -188,6 +189,7 @@
     "Green Component" : 0.54509803921568623
   },
   "Window Type" : 12,
+  "Allow Title Reporting" : true,
   "Use Bright Bold" : true,
   "Has Hotkey" : false,
   "Cursor Text Color" : {
@@ -213,8 +215,8 @@
     "Green Component" : 0.13333333333333333
   },
   "Name" : "Light",
-  "Blinking Cursor" : false,
   "Guid" : "AC339BF6-DB0E-4CC5-B87A-D11CD23C4CF2",
+  "Blinking Cursor" : false,
   "Match Background Color" : {
     "Red Component" : 0.99697142839431763,
     "Color Space" : "P3",
@@ -244,6 +246,11 @@
     "Alpha Component" : 0.5,
     "Green Component" : 0.25479039549827576
   },
+  "Semantic History" : {
+    "text" : "",
+    "action" : "best editor",
+    "editor" : "com.github.atom"
+  },
   "Ambiguous Double Width" : false,
   "Blur Radius" : 0.10000000000000001,
   "Treat Option as Alt" : true,
@@ -255,7 +262,7 @@
     "Green Component" : 0.16078431372549021
   },
   "Blur" : false,
-  "Normal Font" : "FiraCodeNFM-Reg 14",
+  "Normal Font" : "FiraCodeNFM-Reg 12",
   "Vertical Spacing" : 1,
   "Ansi 7 Color" : {
     "Red Component" : 0.43137254901960786,
@@ -269,8 +276,15 @@
   "Command" : "",
   "Terminal Type" : "xterm-256color",
   "Horizontal Spacing" : 0.90000000000000002,
-  "Option Key Sends" : 2,
+  "Tab Color" : {
+    "Red Component" : 1,
+    "Color Space" : "P3",
+    "Blue Component" : 1,
+    "Alpha Component" : 1,
+    "Green Component" : 1
+  },
   "Only The Default BG Color Uses Transparency" : false,
+  "Option Key Sends" : 2,
   "Ansi 15 Color" : {
     "Red Component" : 0.5490196078431373,
     "Color Space" : "sRGB",
@@ -297,6 +311,7 @@
   "Bound Hosts" : [
 
   ],
+  "Load Shell Integration Automatically" : true,
   "Non Ascii Font" : "Monaco 12",
   "Ansi 13 Color" : {
     "Red Component" : 0.64313725490196083,
@@ -306,6 +321,7 @@
     "Green Component" : 0.45882352941176469
   },
   "Columns" : 80,
+  "Use Tab Color" : false,
   "Visual Bell" : false,
   "Use Selected Text Color" : true,
   "Custom Directory" : "No",
