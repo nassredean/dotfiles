@@ -37,6 +37,7 @@ vim.opt.formatoptions:remove('o');
 
 local globals = {
   mapleader = ',',
+  neovide_cursor_animation_length = 0,
 }
 
 for k, v in pairs(options) do

@@ -82,6 +82,9 @@ keymap('n', '<A-S-j>', '<cmd>Treewalker SwapDown<cr>', { silent = true })
 keymap('n', '<A-S-h>', '<cmd>Treewalker SwapLeft<cr>', { silent = true })
 keymap('n', '<A-S-l>', '<cmd>Treewalker SwapRight<cr>', { silent = true })
 
+-- Maximize toggle
+keymap('n', '<Leader>m', '<CMD>Maximize<CR>', silent)
+
 -- copy path
 keymap('n', '<leader>cp', function()
   local path = vim.fn.expand('%:p') -- full path; use '%' for relative, '%:t' for filename only
