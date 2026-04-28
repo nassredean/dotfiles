@@ -1,0 +1,12 @@
+bat
+bruno-cli
+dive
+fd
+fish
+fzf
+gh
+git-delta
+jless
+neovim
+ripgrep
+the_silver_searcher
