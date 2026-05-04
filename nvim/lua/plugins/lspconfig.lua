@@ -5,6 +5,14 @@
 vim.lsp.enable('rust_analyzer') -- rust (requires rust-analyzer installed)
 vim.lsp.enable('ts_ls') -- typescript (requires typescript-language-server/typescript-language-server)
 vim.lsp.enable('lua_ls') -- lua (requires LuaLS/lua-language-server)
+vim.lsp.config('gopls', {
+  root_markers = { 'go.work', 'go.mod' },
+  capabilities = {
+    workspace = {
+      didChangeWatchedFiles = { dynamicRegistration = false },
+    },
+  },
+})
 vim.lsp.enable('gopls') -- golang
 vim.lsp.enable('render-markdown')
 
